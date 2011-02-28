@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	
+	<f:view contentType="text/html">
+	
+		<h:head>
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/style/default.css" media="screen" />
+			<title>PPOB Simulator</title>
+			<ui:insert name="head"></ui:insert>
+			<style type="text/css">
+				.new {
+					background: url(img/new.png) no-repeat;
+				}
+				
+				.search {
+					background: url(img/search.png) no-repeat;
+				}
+			</style>
+		</h:head>
+	
+		<h:body>
+			<div class="outer-container">
+			
+				<div class="inner-container">
+			
+					<div class="header">
+						<div class="title">
+							<span class="sitename"><a href="#{facesContext.externalContext.requestContextPath}/index.jsf">PPOB</a></span>
+							<div class="slogan">Simulator</div>
+						</div>
+					</div>
+
+					<p:menubar id="menu">
+						<p:submenu label="Gateway">
+							<p:menuitem value="Konfigurasi" url="/gateway/list.jsf" styleClass="new"></p:menuitem>
+						</p:submenu>
+						<p:submenu label="Pascabayar">
+							<p:menuitem value="Pelanggan" url="/pascabayar/pelanggan/list.jsf"></p:menuitem>
+							<p:menuitem value="Pembayaran" url="/pascabayar/transaksi/pembayaran.jsf"></p:menuitem>
+							<p:menuitem value="Reversal" url="/pascabayar/transaksi/reversal.jsf"></p:menuitem>
+							<p:menuitem value="Rekonsiliasi" url="/pascabayar/rekonsiliasi/download.jsf"></p:menuitem>
+						</p:submenu>
+						<p:submenu label="Prabayar">
+							<p:menuitem value="Pelanggan" url="/prabayar/pelanggan/list.jsf"></p:menuitem>
+							<p:menuitem value="Pembayaran" url="/prabayar/transaksi/pembayaran.jsf"></p:menuitem>
+							<p:menuitem value="Advice" url="/prabayar/transaksi/advice.jsf"></p:menuitem>
+							<p:menuitem value="Rekonsiliasi" url="/prabayar/rekonsiliasi/download.jsf"></p:menuitem>
+						</p:submenu>
+						<p:submenu label="Non Taglis">
+							<p:menuitem value="Pelanggan" url="/nontaglis/pelanggan/list.jsf"></p:menuitem>
+							<p:menuitem value="Pembayaran" url="/nontaglis/transaksi/pembayaran.jsf"></p:menuitem>
+							<p:menuitem value="Reversal" url="/nontaglis/transaksi/reversal.jsf"></p:menuitem>
+							<p:menuitem value="Rekonsiliasi" url="/nontaglis/rekonsiliasi/download.jsf"></p:menuitem>
+						</p:submenu>
+					</p:menubar>
+			
+					<div class="main">
+			
+						<div class="content">
+							<ui:insert name="content">
+							</ui:insert>
+						</div>
+			
+						<div class="clearer"></div>
+			
+					</div>
+			
+					<div class="footer">
+						&#169;2011 ArtiVisi Intermedia
+						<div class="clearer"></div>
+			
+					</div>
+			
+				</div>
+			
+			</div>
+		
+		</h:body>
+	</f:view>
+
+</html>

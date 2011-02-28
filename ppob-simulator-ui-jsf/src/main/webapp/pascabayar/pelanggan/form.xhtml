@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="../../templates/mainpage.xhtml">
+	
+	
+  <ui:define name="content">
+		
+			
+			<p:panel header="Edit Data Pelanggan Pascabayar">
+				<h:form>
+				
+					<h:panelGrid columns="2"  columnClasses="label,value" styleClass="grid">
+					
+						<h:outputLabel for="idpel" value="ID Pelanggan"></h:outputLabel>
+						<h:inputText id="idpel" required="true" 
+						requiredMessage="harus diisi bos" 
+						validatorMessage="Harus 12 angka" 
+						value="#{pelangganController.pelanggan.idpel}"></h:inputText>
+				
+						<h:outputLabel for="nama" value="Nama"></h:outputLabel>
+						<h:inputText id="nama" required="true" requiredMessage="harus diisi bos" value="#{pelangganController.pelanggan.nama}"></h:inputText>
+				
+						<h:outputLabel for="subscriberSegmentation" value="Tarif"></h:outputLabel>
+						<h:inputText id="subscriberSegmentation" value="#{pelangganController.pelanggan.subscriberSegmentation}"></h:inputText>
+				
+						<h:outputLabel for="powerConsumingCategory" value="Daya"></h:outputLabel>
+						<h:inputText id="powerConsumingCategory" value="#{pelangganController.pelanggan.powerConsumingCategory}"></h:inputText>
+				
+						<h:outputLabel for="serviceUnit" value="Service Unit"></h:outputLabel>
+						<h:inputText id="serviceUnit" value="#{pelangganController.pelanggan.serviceUnit}"></h:inputText>
+				
+						<h:outputLabel for="serviceUnitPhone" value="Service Unit Phone"></h:outputLabel>
+						<h:inputText id="serviceUnitPhone" value="#{pelangganController.pelanggan.serviceUnitPhone}"></h:inputText>
+				
+						<h:panelGroup>
+							<h:panelGrid columns="2">
+								<p:commandButton value="Save" action="#{pelangganController.simpan}"></p:commandButton>
+								<p:commandButton value="Reset" type="reset" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGrid>
+				
+				</h:form>
+				
+			</p:panel>
+
+		
+  </ui:define>
+  
+</ui:composition>
