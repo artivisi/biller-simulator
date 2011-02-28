@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="16" y="16" width="537" height="545" text="Browser&#xA;http://..." measuredWidth="537" measuredHeight="545"/>
+  <widgets xsi:type="model:Label" x="26" y="78" text="Generate Pelanggan" measuredWidth="402" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="152" text="Normal" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="152" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="184" text="1 bulan bukan berjalan" measuredWidth="155" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="216" text="3 bulan tunggakan" measuredWidth="128" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="152" text="100" measuredWidth="34" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="184" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="248" text="4 bulan tunggakan" measuredWidth="128" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="280" text="6 bulan tunggakan" measuredWidth="128" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="312" text="8 bulan tunggakan" measuredWidth="128" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="344" text="10 bulan tunggakan" measuredWidth="136" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="216" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="248" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="280" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="312" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="344" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="184" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="216" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="248" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="280" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="312" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="344" text="orang" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="208" y="384" text="Generate" measuredWidth="82" measuredHeight="27">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

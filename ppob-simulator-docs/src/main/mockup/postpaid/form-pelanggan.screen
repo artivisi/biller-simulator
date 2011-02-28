@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="24" y="16" width="617" height="529" text="Browser&#xA;http://..." measuredWidth="617" measuredHeight="529"/>
+  <widgets xsi:type="model:Label" x="44" y="88" text="Form Pelanggan Postpaid" measuredWidth="500" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="168" text="IDPel" measuredWidth="41" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="202" text="Nama" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="373" text="Response" measuredWidth="70" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="168" width="278" text="511234567890" measuredWidth="278" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="202" width="278" text="Pelanggan Dum'y" measuredWidth="278" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="216" y="448" text="Simpan" measuredWidth="70" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="297" y="448" text="Batal" measuredWidth="56" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="373" text="00" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Spinner" x="216" y="408" text="0" measuredWidth="32" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="408" text="Hold" measuredWidth="37" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="236" text="12345" measuredWidth="50" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="270" text="123456789012345" measuredWidth="130" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="305" text="1234" measuredWidth="42" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="216" y="339" text="123456789" measuredWidth="82" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="339" text="Power Cons. Category" measuredWidth="153" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="305" text="Segmentation" measuredWidth="100" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="270" text="SU Phone" measuredWidth="68" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="236" text="Service Unit" measuredWidth="84" measuredHeight="25">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

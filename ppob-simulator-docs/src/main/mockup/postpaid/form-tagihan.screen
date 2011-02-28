@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="24" y="16" width="617" height="529" text="Browser&#xA;http://..." measuredWidth="617" measuredHeight="529"/>
+  <widgets xsi:type="model:Label" x="44" y="88" text="Generate Tagihan Postpaid" measuredWidth="528" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="168" text="IDPel" measuredWidth="41" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="44" y="192" text="Nama" measuredWidth="45" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="96" y="168" text="531234567890" measuredWidth="101" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="96" y="192" text="Pelanggan Dum'y" measuredWidth="122" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Table" x="47" y="376" text="Pilih,BLTH,Due Date,Tag,BK,VAT,Ins,Action&#xA;[x],2010-01,2010-01-20,100.000,1.000,10.000,500,[Edit] | [Detail]&#xA;[ ],2010-01,2010-01-20,100.000,1.000,10.000,500,[Edit] | [Detail]&#xA;[x],2010-01,2010-01-20,100.000,1.000,10.000,500,[Edit] | [Detail]&#xA;[ ],2010-01,2010-01-20,100.000,1.000,10.000,500,[Edit] | [Detail]" measuredWidth="467" measuredHeight="119">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="47" y="342" text="Select All" measuredWidth="82" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="139" y="342" text="Delete Selection" measuredWidth="130" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:DateField" x="47" y="288" text="2010/12/31" measuredWidth="105" measuredHeight="25"/>
+  <widgets xsi:type="model:Label" x="72" y="264" text="BLTH" measuredWidth="39" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:DateField" x="160" y="288" text="2010/12/31" measuredWidth="105" measuredHeight="25"/>
+  <widgets xsi:type="model:TextField" x="271" y="288" text="100.000" measuredWidth="62" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="343" y="288" text="1.000" measuredWidth="46" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="399" y="288" text="10.000" measuredWidth="54" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="463" y="287" text="Create" measuredWidth="65" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="183" y="264" text="Due" measuredWidth="32" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="287" y="264" text="Tag" measuredWidth="29" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="359" y="264" text="BK" measuredWidth="24" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="407" y="264" text="VAT" measuredWidth="31" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="88" y="232" text="bulan tagihan" measuredWidth="96" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="183" y="231" text="Generate" measuredWidth="82" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Spinner" x="47" y="232" text="7" measuredWidth="32" measuredHeight="25">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

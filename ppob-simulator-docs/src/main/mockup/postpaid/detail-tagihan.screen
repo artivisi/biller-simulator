@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="16" y="8" width="417" height="521" text="Browser&#xA;http://..." measuredWidth="417" measuredHeight="521"/>
+  <widgets xsi:type="model:Label" x="26" y="70" text="Detail Tagihan" measuredWidth="284" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Table" x="26" y="126" width="391" height="387" text="Field, Value&#xA;IDPel,531234567890&#xA;Nama,Pelanggan Dum'y&#xA;BLTH,2010-02&#xA;Due Date,2010-02-20&#xA;Meter Read Date,2010-01-10&#xA;Total Bill,100.000&#xA;Incentive,-500&#xA;VAT,10.000&#xA;Penalty,1.000&#xA;Prev Meter Reading 1,00320&#xA;Curr Meter Reading 1,00320&#xA;Prev Meter Reading 2,00320&#xA;Curr Meter Reading 2,00320&#xA;Prev Meter Reading 3,00320&#xA;Curr Meter Reading 3,00320" measuredWidth="391" measuredHeight="387">
+    <font bold="false"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="24" y="16" width="913" height="537" text="Browser&#xA;http://..." measuredWidth="913" measuredHeight="537"/>
+  <widgets xsi:type="model:Label" x="34" y="87" text="Rekap Transaksi" measuredWidth="314" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="34" y="176" text="Periode" measuredWidth="58" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:DateField" x="96" y="176" text="  /  /  " measuredWidth="59" measuredHeight="25"/>
+  <widgets xsi:type="model:Label" x="160" y="176" text="sampai" measuredWidth="54" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:DateField" x="214" y="176" text="  /  /  " measuredWidth="59" measuredHeight="25"/>
+  <widgets xsi:type="model:Label" x="34" y="143" text="Switcher" measuredWidth="63" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" x="96" y="143" text="1234567" measuredWidth="80" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="96" y="208" text="Download Rekon" measuredWidth="134" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Table" x="34" y="256" text="Waktu,Switcher,Merchant,PLNRef,SwRef,IDPEL,BLTH,Amount,Tag,Ins,VAT,BK,Bank&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567&#xA;20111231,1234567,1234,1234567890,1234567890,1234567890,201102,100.000,90.000,10.000,10.000,1.000,1234567" measuredWidth="882" measuredHeight="165">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="62" y="432" text="First" measuredWidth="34" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="127" y="432" text="1" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="137" y="432" text="2" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="147" y="432" text="3" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="192" y="432" text="Last" measuredWidth="32" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="95" y="432" text="Prev" measuredWidth="33" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="157" y="432" text="Next" measuredWidth="36" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="336" y="143" text="Compare .rcn" measuredWidth="95" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="440" y="143" text="file.rcn" measuredWidth="57" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="504" y="142" text="Browse" measuredWidth="71" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="440" y="175" width="135" height="26" text="Generate .fcn" measuredWidth="135" measuredHeight="26">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

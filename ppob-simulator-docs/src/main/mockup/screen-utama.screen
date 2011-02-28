@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="8" y="8" width="777" height="689" text="Browser&#xA;http://..." measuredWidth="777" measuredHeight="689"/>
+  <widgets xsi:type="model:Placeholder" x="18" y="70" width="203" height="58" text="Logo ArtiVisi" measuredWidth="203" measuredHeight="58"/>
+  <widgets xsi:type="model:Label" x="230" y="70" text="Aplikasi Simulator PPOB" measuredWidth="476" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Panel" x="230" y="146" width="535" height="493" measuredWidth="535" measuredHeight="493"/>
+  <widgets xsi:type="model:Panel" x="18" y="664" width="757" height="23" measuredWidth="757" measuredHeight="23"/>
+  <widgets xsi:type="model:Label" x="360" y="663" text="Footer" measuredWidth="51" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Tree" x="18" y="146" text="Gateway Management&#xA;-Port dan Service&#xA;-Konfigurasi Timeout&#xA;Produk Pascabayar&#xA;-Manajemen Pelanggan&#xA;-Rekap Transaksi&#xA;--Pembayaran&#xA;--Reversal&#xA;-Rekonsiliasi&#xA;Produk Prabayar&#xA;-Manajemen Pelanggan&#xA;-Rekap Transaksi&#xA;--Pembelian&#xA;--Check Status&#xA;-Rekonsiliasi&#xA;Produk Nontaglis&#xA;-Manajemen Pelanggan&#xA;-Rekap Transaksi&#xA;--Pembayaran&#xA;--Reversal&#xA;-Rekonsiliasi" measuredWidth="204" measuredHeight="493">
+    <items x="0" y="5" width="204" height="23" text="Gateway Management"/>
+    <items x="0" y="28" width="204" height="23" text="-Port dan Service"/>
+    <items x="0" y="51" width="204" height="23" text="-Konfigurasi Timeout"/>
+    <items x="0" y="74" width="204" height="23" text="Produk Pascabayar"/>
+    <items x="0" y="97" width="204" height="23" text="-Manajemen Pelanggan"/>
+    <items x="0" y="120" width="204" height="23" text="-Rekap Transaksi"/>
+    <items x="0" y="143" width="204" height="23" text="--Pembayaran"/>
+    <items x="0" y="166" width="204" height="23" text="--Reversal"/>
+    <items x="0" y="189" width="204" height="23" text="-Rekonsiliasi"/>
+    <items x="0" y="212" width="204" height="23" text="Produk Prabayar"/>
+    <items x="0" y="235" width="204" height="23" text="-Manajemen Pelanggan"/>
+    <items x="0" y="258" width="204" height="23" text="-Rekap Transaksi"/>
+    <items x="0" y="281" width="204" height="23" text="--Pembelian"/>
+    <items x="0" y="304" width="204" height="23" text="--Check Status"/>
+    <items x="0" y="327" width="204" height="23" text="-Rekonsiliasi"/>
+    <items x="0" y="350" width="204" height="23" text="Produk Nontaglis"/>
+    <items x="0" y="373" width="204" height="23" text="-Manajemen Pelanggan"/>
+    <items x="0" y="396" width="204" height="23" text="-Rekap Transaksi"/>
+    <items x="0" y="419" width="204" height="23" text="--Pembayaran"/>
+    <items x="0" y="442" width="204" height="23" text="--Reversal"/>
+    <items x="0" y="465" width="204" height="23" text="-Rekonsiliasi"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="272" y="240" text="Screen nanti di sini" measuredWidth="370" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Browser" x="24" y="16" width="617" height="393" text="Browser&#xA;http://..." measuredWidth="617" measuredHeight="393"/>
+  <widgets xsi:type="model:Combo" x="44" y="144" width="85" text="IDPel" measuredWidth="85" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="136" y="144" width="169" text="Text field" measuredWidth="169" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="34" y="78" text="Daftar Pelanggan Postpaid" measuredWidth="524" measuredHeight="57">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="312" y="143" text="Cari" measuredWidth="47" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Table" x="44" y="176" width="577" height="177" text="IDPel,Nama,Actions&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]&#xA;531234567890,Dum'y,[Edit] | [Hapus] | [Tagihan]" measuredWidth="577" measuredHeight="177">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="44" y="360" text="First" measuredWidth="34" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="109" y="360" text="1" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="119" y="360" text="2" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="129" y="360" text="3" measuredWidth="11" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="174" y="360" text="Last" measuredWidth="32" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="77" y="360" text="Prev" measuredWidth="33" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" x="139" y="360" text="Next" measuredWidth="36" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="368" y="143" text="Add" measuredWidth="48" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" x="424" y="143" text="Generate" measuredWidth="82" measuredHeight="27">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
