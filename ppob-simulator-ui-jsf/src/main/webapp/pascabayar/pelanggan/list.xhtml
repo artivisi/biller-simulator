@@ -10,7 +10,7 @@
 		
 			<p:panel>
 				<h:form>
-					<h:commandButton value="Create Pelanggan" action="form?faces-redirect=true"></h:commandButton>
+					<h:commandButton value="Create Pelanggan" action="#{pelangganController.baru}"></h:commandButton>
 					<h:commandButton value="Generate Pelanggan" action="generate?faces-redirect=true"></h:commandButton>
 				</h:form>				
 			</p:panel>
@@ -64,6 +64,13 @@
 				            </f:facet>
 				            <h:outputText value="#{p.serviceUnitPhone}" />
 				        </p:column>
+				        
+				        <p:column>
+				        	<h:commandButton value="edit" action="#{pelangganController.edit}" />
+			        	</p:column>
+                		<p:column>
+                			<h:commandButton value="delete" action="#{pelangganController.delete}" />
+               			</p:column>
 				
 				    </p:dataTable>
 				</h:form>
