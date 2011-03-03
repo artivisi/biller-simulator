@@ -1,5 +1,6 @@
 package com.artivisi.ppob.simulator.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
 
@@ -25,6 +27,14 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 
 	@Override
 	public void delete(Pelanggan pelanggan) {
+		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
+			return;
+		}
+		
+		sessionFactory.getCurrentSession().createQuery("delete from TagihanPascabayar t where t.pelanggan.id = :pelanggan")
+		.setString("pelanggan", pelanggan.getId())
+		.executeUpdate();
+		
 		sessionFactory.getCurrentSession().delete(pelanggan);
 	}
 
@@ -54,6 +64,29 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 		return (Pelanggan) sessionFactory.getCurrentSession().createQuery("from Pelanggan where meterNumber = :meternum")
 		.setString("meternum", meternum.trim())
 		.uniqueResult();
+	}
+
+	@Override
+	public void save(TagihanPascabayar tagihanPascabayar) {
+		sessionFactory.getCurrentSession().saveOrUpdate(tagihanPascabayar);
+	}
+
+	@Override
+	public void delete(TagihanPascabayar tagihanPascabayar) {
+		sessionFactory.getCurrentSession().delete(tagihanPascabayar);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TagihanPascabayar> findTagihan(Pelanggan pelanggan) {
+		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
+			return new ArrayList<TagihanPascabayar>();
+		}
+		
+		return sessionFactory.getCurrentSession()
+		.createQuery("from TagihanPascabayar t where t.pelanggan.id = :pelanggan order by t.billPeriod")
+		.setString("pelanggan", pelanggan.getId())
+		.list();
 	}
 
 }

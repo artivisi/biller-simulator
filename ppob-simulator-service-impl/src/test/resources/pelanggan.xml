@@ -30,4 +30,57 @@
     	service_unit="53"
     	service_unit_phone="123456"
     />
+    
+    
+    <tagihan_pascabayar 
+    	id="1001"
+    	id_pelanggan="abc"
+    	bill_period="2010-01-01"
+    	due_date="2010-01-20"
+    	meter_read_date="2009-12-15"
+    	bill="100000"
+    	vat="10000"
+    	denda="1000"
+    	insentif="90000"
+    	prev_meter_read_1="100"
+    	prev_meter_read_2="100"
+    	prev_meter_read_3="100"
+    	curr_meter_read_1="120"
+    	curr_meter_read_2="120"
+    	curr_meter_read_3="120"
+    />
+    <tagihan_pascabayar 
+    	id="1002"
+    	id_pelanggan="abc"
+    	bill_period="2010-02-01"
+    	due_date="2010-02-20"
+    	meter_read_date="2010-01-15"
+    	bill="100000"
+    	vat="10000"
+    	denda="1000"
+    	insentif="90000"
+    	prev_meter_read_1="100"
+    	prev_meter_read_2="100"
+    	prev_meter_read_3="100"
+    	curr_meter_read_1="120"
+    	curr_meter_read_2="120"
+    	curr_meter_read_3="120"
+    />
+    <tagihan_pascabayar 
+    	id="1003"
+    	id_pelanggan="abc"
+    	bill_period="2010-03-01"
+    	due_date="2010-03-20"
+    	meter_read_date="2010-02-15"
+    	bill="100000"
+    	vat="10000"
+    	denda="1000"
+    	insentif="90000"
+    	prev_meter_read_1="100"
+    	prev_meter_read_2="100"
+    	prev_meter_read_3="100"
+    	curr_meter_read_1="120"
+    	curr_meter_read_2="120"
+    	curr_meter_read_3="120"
+    />
 </dataset>

@@ -5,7 +5,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -20,6 +22,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
 public class PpobSimulatorServiceImplTest {
@@ -56,7 +59,6 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(p);
 		service.delete(p);
 		
-		
 		Pelanggan p2 = service.findPelangganById("abc");
 		assertNull(p2);
 	}
@@ -83,6 +85,53 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(service.findPelangganByMeterNumber("12345678901"));
 	}
 	
+	@Test
+	public void testSaveTagihanPascabayar(){
+		Pelanggan p = service.findPelangganById("def");
+		TagihanPascabayar t = createTagihanPascabayar(p);
+		service.save(t);
+		assertNotNull(t.getId());
+	}
+	
+	@Test
+	public void testDeleteTagihanPascabayar() {
+		Pelanggan p = service.findPelangganById("abc");
+		List<TagihanPascabayar> hasil = service.findTagihan(p);
+		
+		TagihanPascabayar t = hasil.get(0);
+		service.delete(t);
+		
+		assertTrue(service.findTagihan(p).size() == 2);
+	}
+	
+	@Test
+	public void testFindTagihanByPelanggan(){
+		Pelanggan p = service.findPelangganById("abc");
+		List<TagihanPascabayar> hasil = service.findTagihan(p);
+		assertTrue(hasil.size() == 3);
+	}
+	
+	private TagihanPascabayar createTagihanPascabayar(Pelanggan p) {
+		TagihanPascabayar t = new TagihanPascabayar();
+		t.setPelanggan(p);
+		t.setBillPeriod(new Date());
+		t.setDueDate(new Date());
+		t.setMeterReadDate(new Date());
+		
+		t.setBill(new BigDecimal(99000));
+		t.setVat(new BigDecimal(9900));
+		t.setDenda(new BigDecimal(990));
+		t.setInsentif(new BigDecimal(90000));
+
+		t.setPreviousMeterRead1("123");
+		t.setPreviousMeterRead2("123");
+		t.setPreviousMeterRead3("123");
+		t.setCurrentMeterRead1("456");
+		t.setCurrentMeterRead2("456");
+		t.setCurrentMeterRead3("456");
+		return t;
+	}
+
 	private Pelanggan createPelanggan() {
 		Pelanggan p = new Pelanggan();
 		p.setIdpel("123456789010");
