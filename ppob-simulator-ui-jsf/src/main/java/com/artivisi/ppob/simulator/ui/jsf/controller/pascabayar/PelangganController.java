@@ -1,5 +1,6 @@
 package com.artivisi.ppob.simulator.ui.jsf.controller.pascabayar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
 @Controller
@@ -21,26 +23,21 @@ public class PelangganController {
 	
 	private List<Pelanggan> semua;
 	private Pelanggan pelanggan = new Pelanggan();
-	private DataModel<Pelanggan> model;
+	private TagihanPascabayar tagihan = new TagihanPascabayar();
+	private DataModel<Pelanggan> listModelPelanggan;
+	private DataModel<TagihanPascabayar> listModelTagihan;
+	private List<TagihanPascabayar> tagihanPascabayar = new ArrayList<TagihanPascabayar>();
 	
 	@PostConstruct
 	public void initSemuaPelanggan(){
 		semua = ppobSimulatorService.findAllPelanggan();
-		model = new ListDataModel<Pelanggan>(semua);
-	}
-	
-	public List<Pelanggan> getSemuaPelanggan(){
-		return semua;
-	}
-
-	public Pelanggan getPelanggan(){
-		return pelanggan;
+		listModelPelanggan = new ListDataModel<Pelanggan>(semua);
 	}
 	
 	public String simpan(){
 		ppobSimulatorService.save(pelanggan);
 		pelanggan = new Pelanggan();
-		refreshList();
+		refreshListPelanggan();
 		return "list?faces-redirect=true";
 	}
 	
@@ -50,28 +47,68 @@ public class PelangganController {
 	}
 
 	public String edit(){
-		pelanggan = model.getRowData();
+		pelanggan = listModelPelanggan.getRowData();
 		return "form?faces-redirect=true";
 	}
 	
 	public void delete(){
-		ppobSimulatorService.delete(model.getRowData());
-		refreshList();
-	}
-
-	private void refreshList() {
-		semua = ppobSimulatorService.findAllPelanggan();
-		model = new ListDataModel<Pelanggan>(semua);
-	}
-
-	public DataModel<Pelanggan> getModel() {
-		return model;
-	}
-
-	public void setModel(DataModel<Pelanggan> model) {
-		this.model = model;
+		ppobSimulatorService.delete(listModelPelanggan.getRowData());
+		refreshListPelanggan();
 	}
 	
+	public String tagihan(){
+		pelanggan = listModelPelanggan.getRowData();
+		tagihanPascabayar = ppobSimulatorService.findTagihan(pelanggan);
+		listModelTagihan = new ListDataModel<TagihanPascabayar>(tagihanPascabayar);
+		return "/pascabayar/tagihan/list?faces-redirect=true";
+	}
+	
+	public void deleteTagihan(){
+		ppobSimulatorService.delete(listModelTagihan.getRowData());
+		refreshListTagihan();
+	}
+	
+	public String simpanTagihan(){
+		tagihan.setPelanggan(pelanggan);
+		ppobSimulatorService.save(tagihan);
+		tagihan = new TagihanPascabayar();
+		refreshListTagihan();
+		return "list?faces-redirect=true";
+	}
+
+	public List<Pelanggan> getSemuaPelanggan(){
+		return semua;
+	}
+
+	public Pelanggan getPelanggan(){
+		return pelanggan;
+	}
+	
+	public TagihanPascabayar getTagihan() {
+		return tagihan;
+	}
+
+	public List<TagihanPascabayar> getTagihanPascabayar(){
+		return tagihanPascabayar;
+	}
+
+	public DataModel<Pelanggan> getListModelPelanggan() {
+		return listModelPelanggan;
+	}
+
+	public DataModel<TagihanPascabayar> getListModelTagihan() {
+		return listModelTagihan;
+	}
+
+	private void refreshListPelanggan() {
+		semua = ppobSimulatorService.findAllPelanggan();
+		listModelPelanggan = new ListDataModel<Pelanggan>(semua);
+	}
+	
+	private void refreshListTagihan() {
+		tagihanPascabayar = ppobSimulatorService.findTagihan(pelanggan);
+		listModelTagihan = new ListDataModel<TagihanPascabayar>(tagihanPascabayar);
+	}
 	
 	
 }

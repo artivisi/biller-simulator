@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
-
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:com/artivisi/**/applicationContext.xml</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>com.sun.faces.allowTextChildren</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
-	
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:com/artivisi/**/applicationContext.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.sun.faces.allowTextChildren</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>
 			org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>
-
-	<filter>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Resource Servlet</servlet-name>
-		<servlet-class>org.primefaces.resource.ResourceServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Resource Servlet</servlet-name>
-		<url-pattern>/primefaces_resource/*</url-pattern>
-	</servlet-mapping>
-
+  </listener>
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Resource Servlet</servlet-name>
+    <servlet-class>org.primefaces.resource.ResourceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Resource Servlet</servlet-name>
+    <url-pattern>/primefaces_resource/*</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    <param-value>resources.application</param-value>
+  </context-param>
+  <listener>
+    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+  </listener>
 </web-app>

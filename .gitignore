@@ -6,6 +6,7 @@
 Servers
 bin
 target
+libraries
 
 # SpringSource Tool Suite
 .springBeans

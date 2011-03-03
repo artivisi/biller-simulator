@@ -19,7 +19,7 @@
 				
 				<h:form>
 				
-					<p:dataTable var="p" value="#{pelangganController.semuaPelanggan}"   
+					<p:dataTable var="p" value="#{pelangganController.listModelPelanggan}"   
                   paginator="true" rows="10"  
                   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                   rowsPerPageTemplate="10,15,20">
@@ -65,6 +65,9 @@
 				            <h:outputText value="#{p.serviceUnitPhone}" />
 				        </p:column>
 				        
+				        <p:column>
+				        	<h:commandButton value="tagihan" action="#{pelangganController.tagihan}" />
+			        	</p:column>
 				        <p:column>
 				        	<h:commandButton value="edit" action="#{pelangganController.edit}" />
 			        	</p:column>

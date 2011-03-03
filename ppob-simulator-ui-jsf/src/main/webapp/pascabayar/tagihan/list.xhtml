@@ -9,8 +9,77 @@
   <ui:define name="content">
 		
 			
-			<p:panel header="List Pelanggan Pascabayar">
+			<p:panel header="Info Pelanggan Pascabayar">
 				
+				<h:form>
+					<h:panelGrid columns="2"  columnClasses="label,value" styleClass="grid">
+					
+						<h:outputText value="ID Pelanggan"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.idpel}"></h:outputText>
+						<h:outputText value="No Meter"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.meterNumber}"></h:outputText>
+						<h:outputText value="Nama"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.nama}"></h:outputText>
+					
+					</h:panelGrid>
+					
+					<p:panel>
+						<h:commandButton value="Create Tagihan" action="form?faces-redirect=true"></h:commandButton>
+					</p:panel>
+					
+					<p:dataTable var="t" value="#{pelangganController.listModelTagihan}">   
+				        <p:column>
+				            <f:facet name="header">
+				                    Bill Period
+				            </f:facet>
+				            <h:outputText value="#{t.billPeriod}">
+				            	<f:convertDateTime type="date" dateStyle="medium"/>
+				            </h:outputText>
+				        </p:column>
+				
+				        <p:column>
+				            <f:facet name="header">
+				                    Tagihan
+				            </f:facet>
+				            <h:outputText value="#{t.bill}" >
+				            	<f:convertNumber minFractionDigits="2"/>
+				            </h:outputText>
+				        </p:column>
+				        
+				        <p:column>
+				            <f:facet name="header">
+				                    BK
+				            </f:facet>
+				            <h:outputText value="#{t.denda}" >
+				            	<f:convertNumber minFractionDigits="2"/>
+				            </h:outputText>
+				        </p:column>
+				
+				        <p:column>
+				            <f:facet name="header">
+				                    VAT
+				            </f:facet>
+				            <h:outputText value="#{t.vat}" >
+				            	<f:convertNumber minFractionDigits="2"/>
+				            </h:outputText>
+				        </p:column>
+				
+				        <p:column>
+				            <f:facet name="header">
+				                    Subsidi
+				            </f:facet>
+				            <h:outputText value="#{t.insentif}">
+				            	<f:convertNumber minFractionDigits="2"/>
+				            </h:outputText>
+				        </p:column>
+					        
+                		<p:column>
+                			<h:commandButton value="delete" action="#{pelangganController.deleteTagihan}" />
+               			</p:column>
+				
+				    </p:dataTable>
+					
+				</h:form>
 				
 			</p:panel>
 

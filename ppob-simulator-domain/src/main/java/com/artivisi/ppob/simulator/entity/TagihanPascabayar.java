@@ -25,13 +25,13 @@ public class TagihanPascabayar {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="bill_period", nullable=false)
-	private Date billPeriod;
+	private Date billPeriod = new Date();
 	@Temporal(TemporalType.DATE)
 	@Column(name="due_date", nullable=false)
-	private Date dueDate;
+	private Date dueDate = new Date();
 	@Temporal(TemporalType.DATE)
 	@Column(name="meter_read_date", nullable=false)
-	private Date meterReadDate;
+	private Date meterReadDate = new Date();
 	
 	@Column(nullable=false)
 	private BigDecimal bill = BigDecimal.ZERO;

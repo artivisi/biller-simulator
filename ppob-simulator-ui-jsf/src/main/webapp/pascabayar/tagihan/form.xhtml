@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="../../templates/mainpage.xhtml">
+	
+	
+  <ui:define name="content">
+		
+			
+			<p:panel header="Entri Tagihan Pascabayar">
+				
+				<h:form>
+				
+					<h:panelGrid columns="2"  columnClasses="label,value" styleClass="grid">
+					
+						<h:outputText value="ID Pelanggan"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.idpel}"></h:outputText>
+						<h:outputText value="No Meter"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.meterNumber}"></h:outputText>
+						<h:outputText value="Nama"></h:outputText>
+						<h:outputText value="#{pelangganController.pelanggan.nama}"></h:outputText>
+					
+						<h:outputLabel for="billPeriod" value="Bill Period"></h:outputLabel>
+						<p:calendar id="billPeriod" value="#{pelangganController.tagihan.billPeriod}" required="true" requiredMessage="Harus diisi"></p:calendar>
+
+						<h:outputLabel for="dueDate" value="Due Date"></h:outputLabel>
+						<p:calendar id="dueDate" value="#{pelangganController.tagihan.dueDate}" required="true" requiredMessage="Harus diisi"></p:calendar>
+
+						<h:outputLabel for="meterReadDate" value="Meter Read Date"></h:outputLabel>
+						<p:calendar id="meterReadDate" value="#{pelangganController.tagihan.meterReadDate}" required="true" requiredMessage="Harus diisi"></p:calendar>
+				
+						<h:outputLabel for="bill" value="Tagihan Listrik"></h:outputLabel>
+						<p:inputText id="bill" value="#{pelangganController.tagihan.bill}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="denda" value="Denda"></h:outputLabel>
+						<p:inputText id="denda" value="#{pelangganController.tagihan.denda}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="vat" value="VAT"></h:outputLabel>
+						<p:inputText id="vat" value="#{pelangganController.tagihan.vat}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="insentif" value="Insentif"></h:outputLabel>
+						<p:inputText id="insentif" value="#{pelangganController.tagihan.insentif}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="previousMeterRead1" value="Prev. Meter Read 1"></h:outputLabel>
+						<p:inputText id="previousMeterRead1" value="#{pelangganController.tagihan.previousMeterRead1}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="previousMeterRead2" value="Prev. Meter Read 2"></h:outputLabel>
+						<p:inputText id="previousMeterRead2" value="#{pelangganController.tagihan.previousMeterRead2}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="previousMeterRead3" value="Prev. Meter Read 3"></h:outputLabel>
+						<p:inputText id="previousMeterRead3" value="#{pelangganController.tagihan.previousMeterRead3}" required="true" requiredMessage="Harus diisi"/>
+				
+
+						<h:outputLabel for="currentMeterRead1" value="Curr. Meter Read 1"></h:outputLabel>
+						<p:inputText id="currentMeterRead1" value="#{pelangganController.tagihan.currentMeterRead1}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="currentMeterRead2" value="Curr. Meter Read 2"></h:outputLabel>
+						<p:inputText id="currentMeterRead2" value="#{pelangganController.tagihan.currentMeterRead2}" required="true" requiredMessage="Harus diisi"/>
+
+						<h:outputLabel for="currentMeterRead3" value="Curr. Meter Read 3"></h:outputLabel>
+						<p:inputText id="currentMeterRead3" value="#{pelangganController.tagihan.currentMeterRead3}" required="true" requiredMessage="Harus diisi"/>
+				
+						<h:panelGroup>
+							<h:panelGrid columns="2">
+								<p:commandButton value="Save" action="#{pelangganController.simpanTagihan}"></p:commandButton>
+								<p:commandButton value="Reset" type="reset" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGrid>
+				
+				</h:form>
+			</p:panel>
+
+		
+  </ui:define>
+  
+</ui:composition>
