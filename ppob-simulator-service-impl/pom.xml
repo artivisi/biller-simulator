@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>ppob-simulator-service.impl</artifactId>
+	<artifactId>ppob-simulator-service-impl</artifactId>
 	<packaging>jar</packaging>
 	<name>Service Implementation</name>
 

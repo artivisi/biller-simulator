@@ -45,15 +45,7 @@ public class PpobSimulatorServiceImplTest {
 	
 	@Test
 	public void testSave() {
-		Pelanggan p = new Pelanggan();
-		p.setIdpel("123456789010");
-		p.setMeterNumber("12345678900");
-		p.setNama("Pelanggan Dum'my");
-		p.setPowerConsumingCategory("1200");
-		p.setSubscriberSegmentation("R1");
-		p.setServiceUnit("51");
-		p.setServiceUnitPhone("1234567890");
-		
+		Pelanggan p = createPelanggan();
 		service.save(p);
 		assertNotNull(p.getId());
 	}
@@ -89,6 +81,18 @@ public class PpobSimulatorServiceImplTest {
 		assertNull(service.findPelangganByMeterNumber(""));
 		assertNull(service.findPelangganByMeterNumber("10987654321"));
 		assertNotNull(service.findPelangganByMeterNumber("12345678901"));
+	}
+	
+	private Pelanggan createPelanggan() {
+		Pelanggan p = new Pelanggan();
+		p.setIdpel("123456789010");
+		p.setMeterNumber("12345678900");
+		p.setNama("Pelanggan Dum'my");
+		p.setPowerConsumingCategory("1200");
+		p.setSubscriberSegmentation("R1");
+		p.setServiceUnit("51");
+		p.setServiceUnitPhone("1234567890");
+		return p;
 	}
 
 }
