@@ -10,8 +10,47 @@
 		
 			
 			<p:panel header="Generate Data Pelanggan Pascabayar">
+			
+				<h:outputText value="Perhatian !!! Menjalankan generator akan menghapus semua data pascabayar yang sudah ada"></h:outputText>
+			
+				<h:form>
 				
+					<h:panelGrid columns="2"  columnClasses="label,value" styleClass="grid">
+					
+						<h:outputLabel for="normal" value="1 bulan berjalan"></h:outputLabel>
+						<h:inputText id="normal" value="#{tagihanController.generator.normal}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="satuBulanBukanBerjalan" value="1 bulan bukan berjalan"></h:outputLabel>
+						<h:inputText id="satuBulanBukanBerjalan" value="#{tagihanController.generator.satuBulanBukanBerjalan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="tigaBulanTunggakan" value="3 bulan tunggakan"></h:outputLabel>
+						<h:inputText id="tigaBulanTunggakan" value="#{tagihanController.generator.tigaBulanTunggakan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="empatBulanTunggakan" value="4 bulan tunggakan"></h:outputLabel>
+						<h:inputText id="empatBulanTunggakan" value="#{tagihanController.generator.empatBulanTunggakan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="enamBulanTunggakan" value="6 bulan tunggakan"></h:outputLabel>
+						<h:inputText id="enamBulanTunggakan" value="#{tagihanController.generator.enamBulanTunggakan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="delapanBulanTunggakan" value="8 bulan tunggakan"></h:outputLabel>
+						<h:inputText id="delapanBulanTunggakan" value="#{tagihanController.generator.delapanBulanTunggakan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="sepuluhBulanTunggakan" value="10 bulan tunggakan"></h:outputLabel>
+						<h:inputText id="sepuluhBulanTunggakan" value="#{tagihanController.generator.sepuluhBulanTunggakan}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+
+						<h:outputLabel for="duaMiliar" value="2 Miliar"></h:outputLabel>
+						<h:inputText id="duaMiliar" value="#{tagihanController.generator.duaMiliar}" required="true" requiredMessage="harus diisi bos"></h:inputText>
+						
+						<h:panelGroup>
+							<h:panelGrid columns="2">
+								<p:commandButton value="Save" action="#{tagihanController.generate}"></p:commandButton>
+								<p:commandButton value="Reset" type="reset" />
+							</h:panelGrid>
+						</h:panelGroup>
+						
+					</h:panelGrid>
 				
+				</h:form>
 			</p:panel>
 
 		

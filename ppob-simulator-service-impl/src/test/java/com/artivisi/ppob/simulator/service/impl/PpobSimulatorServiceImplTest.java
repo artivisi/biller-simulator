@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.artivisi.ppob.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.ppob.simulator.entity.Pelanggan;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
@@ -109,6 +110,11 @@ public class PpobSimulatorServiceImplTest {
 		Pelanggan p = service.findPelangganById("abc");
 		List<TagihanPascabayar> hasil = service.findTagihan(p);
 		assertTrue(hasil.size() == 3);
+	}
+	
+	@Test
+	public void testGenerate(){
+		service.generatePascabayar(new GeneratorTagihanPascabayar());
 	}
 	
 	private TagihanPascabayar createTagihanPascabayar(Pelanggan p) {

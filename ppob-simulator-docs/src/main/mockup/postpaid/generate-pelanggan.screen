@@ -67,7 +67,16 @@
   <widgets xsi:type="model:Label" x="257" y="344" text="orang" measuredWidth="45" measuredHeight="25">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" x="208" y="384" text="Generate" measuredWidth="82" measuredHeight="27">
+  <widgets xsi:type="model:Button" x="208" y="456" text="Generate" measuredWidth="82" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="40" y="376" text="2 Miliar" measuredWidth="55" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" x="208" y="376" text="10" measuredWidth="26" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="257" y="376" text="orang" measuredWidth="45" measuredHeight="25">
     <font/>
   </widgets>
   <hRuler/>
