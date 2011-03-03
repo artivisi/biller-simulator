@@ -1,13 +1,44 @@
 package com.artivisi.ppob.simulator.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity @Table(name="m_pelanggan")
 public class Pelanggan {
+	
+	@Id @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
+
+	@NotNull
+	@NotEmpty
+	@Column(nullable=false, unique=true)
 	private String idpel;
+	@NotNull
+	@NotEmpty
+	@Column(name="meter_number", nullable=false, unique=true)
+	private String meterNumber;
+	@NotNull
+	@NotEmpty
+	@Column(nullable=false)
 	private String nama;
+	
+	@Column(name="service_unit")
 	private String serviceUnit;
+	@Column(name="service_unit_phone")
 	private String serviceUnitPhone;
+	@Column(name="subscriber_segmentation")
 	private String subscriberSegmentation;
+	@Column(name="power_consuming_category")
 	private String powerConsumingCategory;
+	
 	public String getId() {
 		return id;
 	}
@@ -16,6 +47,12 @@ public class Pelanggan {
 	}
 	public String getIdpel() {
 		return idpel;
+	}
+	public String getMeterNumber() {
+		return meterNumber;
+	}
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
 	}
 	public void setIdpel(String idpel) {
 		this.idpel = idpel;

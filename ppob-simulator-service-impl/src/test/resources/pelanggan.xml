@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <m_pelanggan
+    	id="abc"
+    	idpel="123456789011"
+    	meter_number="12345678901"
+    	nama="Pelanggan Dum'my 1"
+    	subscriber_segmentation="R1"
+    	power_consuming_category="1200"
+    	service_unit="51"
+    	service_unit_phone="123456"
+    />
+    <m_pelanggan
+    	id="def"
+    	idpel="123456789012"
+    	meter_number="12345678902"
+    	nama="Pelanggan Dum'my 2'"
+    	subscriber_segmentation="R2"
+    	power_consuming_category="900"
+    	service_unit="52"
+    	service_unit_phone="123456"
+    />
+    <m_pelanggan
+    	id="ghi"
+    	idpel="123456789013"
+    	meter_number="12345678903"
+    	nama="Pelanggan Dum'my 3"
+    	subscriber_segmentation="S1"
+    	power_consuming_category="4500"
+    	service_unit="53"
+    	service_unit_phone="123456"
+    />
+</dataset>
