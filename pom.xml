@@ -12,6 +12,7 @@
         <module>ppob-simulator-domain</module>
         <module>ppob-simulator-service-impl</module>
         <module>ppob-simulator-ui-jsf</module>
+        <module>ppob-simulator-gateway-pln</module>        
     </modules>
 
 
