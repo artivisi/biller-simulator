@@ -13,11 +13,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity @Table(name="tagihan_pascabayar")
 public class TagihanPascabayar {
 	
-	@Id @GeneratedValue
-	private Long id;
+	@Id @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+	private String id;
 	
 	@ManyToOne 
 	@JoinColumn(name="id_pelanggan", nullable=false)
@@ -54,10 +57,10 @@ public class TagihanPascabayar {
 	private String currentMeterRead2;
 	@Column(nullable=false, name="curr_meter_read_3")
 	private String currentMeterRead3;
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Pelanggan getPelanggan() {
