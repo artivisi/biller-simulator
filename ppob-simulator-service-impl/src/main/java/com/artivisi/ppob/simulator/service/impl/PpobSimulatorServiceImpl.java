@@ -92,16 +92,21 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 		sessionFactory.getCurrentSession().delete(tagihanPascabayar);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<TagihanPascabayar> findTagihan(Pelanggan pelanggan) {
 		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
 			return new ArrayList<TagihanPascabayar>();
 		}
 		
+		return findTagihan(pelanggan, false);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<TagihanPascabayar> findTagihan(Pelanggan pelanggan, Boolean lunas) {
 		return sessionFactory.getCurrentSession()
-		.createQuery("from TagihanPascabayar t where t.pelanggan.id = :pelanggan order by t.billPeriod")
+		.createQuery("from TagihanPascabayar t where t.pelanggan.id = :pelanggan and t.lunas = :lunas order by t.billPeriod")
 		.setString("pelanggan", pelanggan.getId())
+		.setBoolean("lunas", lunas)
 		.list();
 	}
 

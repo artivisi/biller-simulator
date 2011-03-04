@@ -12,8 +12,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import junit.framework.Assert;
-
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
@@ -106,14 +104,14 @@ public class PpobSimulatorServiceImplTest {
 		TagihanPascabayar t = hasil.get(0);
 		service.delete(t);
 		
-		assertTrue(service.findTagihan(p).size() == 2);
+		assertTrue(service.findTagihan(p).size() == 1);
 	}
 	
 	@Test
 	public void testFindTagihanByPelanggan(){
 		Pelanggan p = service.findPelangganById("abc");
 		List<TagihanPascabayar> hasil = service.findTagihan(p);
-		assertTrue(hasil.size() == 3);
+		assertTrue(hasil.size() == 2);
 	}
 	
 	@Test
@@ -129,19 +127,6 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(p.getId());
 	}
 
-	@Test
-	public void testSavePembayaranSudahLunas(){
-		try {
-			TagihanPascabayar t = service.findTagihan(service.findPelangganById("abc")).get(0);
-			PembayaranPascabayar p = createPembayaranPascabayar(t);
-			service.save(p);
-			Assert.fail("Harusnya IllegalStateException, tapi malahan sukses");
-		} catch (IllegalStateException err){
-			// seharusnya ini
-		} catch (Exception err){
-			Assert.fail("Harusnya IllegalStateException, tapi malahan "+err.getClass().getName());
-		}
-	}
 	
 	@Test
 	public void testDeletePembayaran(){
