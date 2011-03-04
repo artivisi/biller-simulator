@@ -4,5 +4,6 @@
 	<session-factory>
 		<mapping class="com.artivisi.ppob.simulator.entity.Pelanggan" />
 		<mapping class="com.artivisi.ppob.simulator.entity.TagihanPascabayar" />
+		<mapping class="com.artivisi.ppob.simulator.entity.PembayaranPascabayar" />
 	</session-factory>
 </hibernate-configuration>

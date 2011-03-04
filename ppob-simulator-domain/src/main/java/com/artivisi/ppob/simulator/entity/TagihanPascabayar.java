@@ -57,11 +57,21 @@ public class TagihanPascabayar {
 	private String currentMeterRead2;
 	@Column(nullable=false, name="curr_meter_read_3")
 	private String currentMeterRead3;
+	
+	@Column(nullable=false)
+	private Boolean lunas = Boolean.FALSE;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public Boolean getLunas() {
+		return lunas;
+	}
+	public void setLunas(Boolean lunas) {
+		this.lunas = lunas;
 	}
 	public Pelanggan getPelanggan() {
 		return pelanggan;

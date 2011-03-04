@@ -48,6 +48,7 @@
     	curr_meter_read_1="120"
     	curr_meter_read_2="120"
     	curr_meter_read_3="120"
+    	lunas="true"
     />
     <tagihan_pascabayar 
     	id="1002"
@@ -65,6 +66,7 @@
     	curr_meter_read_1="120"
     	curr_meter_read_2="120"
     	curr_meter_read_3="120"
+    	lunas="false"
     />
     <tagihan_pascabayar 
     	id="1003"
@@ -82,5 +84,19 @@
     	curr_meter_read_1="120"
     	curr_meter_read_2="120"
     	curr_meter_read_3="120"
+    	lunas="false"
     />
+    
+    <pembayaran_pascabayar 
+    	id="abc"
+    	id_tagihan_pascabayar="1001"
+    	waktu_transaksi="2011-01-01 09:09:09"
+    	tanggal_transaksi="2011-01-01"
+    	bank="BANKABC"
+    	switcher="ARTIVISI"
+    	loket="L-001"
+    	operator="endy"
+    	merchant_category="6012"
+    />
+    
 </dataset>

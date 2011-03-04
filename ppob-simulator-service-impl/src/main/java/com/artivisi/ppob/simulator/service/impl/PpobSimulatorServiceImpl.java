@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 import com.artivisi.ppob.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.PembayaranPascabayar;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
@@ -35,6 +36,10 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
 			return;
 		}
+		
+		sessionFactory.getCurrentSession().createQuery("delete from PembayaranPascabayar p where p.tagihanPascabayar.id in (select t.id from TagihanPascabayar t where t.pelanggan.id = :pelanggan)")
+		.setString("pelanggan", pelanggan.getId())
+		.executeUpdate();
 		
 		sessionFactory.getCurrentSession().createQuery("delete from TagihanPascabayar t where t.pelanggan.id = :pelanggan")
 		.setString("pelanggan", pelanggan.getId())
@@ -78,6 +83,12 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 
 	@Override
 	public void delete(TagihanPascabayar tagihanPascabayar) {
+		if(tagihanPascabayar == null || !StringUtils.hasText(tagihanPascabayar.getId())) return;
+		
+		sessionFactory.getCurrentSession().createQuery("delete from PembayaranPascabayar p where p.tagihanPascabayar.id = :tagihan")
+		.setString("tagihan", tagihanPascabayar.getId())
+		.executeUpdate();
+		
 		sessionFactory.getCurrentSession().delete(tagihanPascabayar);
 	}
 
@@ -97,6 +108,7 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 	@Override
 	public void generatePascabayar(GeneratorTagihanPascabayar generator) {
 		// hapus dulu data existing
+		sessionFactory.getCurrentSession().createQuery("delete from PembayaranPascabayar").executeUpdate();
 		sessionFactory.getCurrentSession().createQuery("delete from TagihanPascabayar").executeUpdate();
 		sessionFactory.getCurrentSession().createQuery("delete from Pelanggan").executeUpdate();
 		
@@ -165,6 +177,32 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 		
 		sessionFactory.getCurrentSession().saveOrUpdate(p);
 		sessionFactory.getCurrentSession().saveOrUpdate(t);
+	}
+
+	@Override
+	public void save(PembayaranPascabayar pembayaranPascabayar) {
+		if(pembayaranPascabayar.getTagihanPascabayar().getLunas()) {
+			throw new IllegalStateException("Sudah Lunas");
+		}
+		sessionFactory.getCurrentSession().saveOrUpdate(pembayaranPascabayar);
+	}
+
+	@Override
+	public void delete(PembayaranPascabayar pembayaranPascabayar) {
+		if(pembayaranPascabayar == null || !StringUtils.hasText(pembayaranPascabayar.getId())) return;
+		sessionFactory.getCurrentSession().delete(pembayaranPascabayar);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PembayaranPascabayar> findPembayaranPascabayar(Date tanggal,String switcher) {
+		if(tanggal == null || !StringUtils.hasText(switcher)) return new ArrayList<PembayaranPascabayar>();
+		
+		return sessionFactory.getCurrentSession()
+		.createQuery("from PembayaranPascabayar p where p.tanggalTransaksi = :tanggal and p.switcher = :switcher order by p.waktuTransaksi")
+		.setDate("tanggal", tanggal)
+		.setString("switcher", switcher.trim())
+		.list();
 	}
 
 }

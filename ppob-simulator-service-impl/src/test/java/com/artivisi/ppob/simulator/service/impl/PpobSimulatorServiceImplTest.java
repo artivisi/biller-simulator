@@ -12,9 +12,12 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import junit.framework.Assert;
+
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,6 +26,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.artivisi.ppob.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.PembayaranPascabayar;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
@@ -115,6 +119,51 @@ public class PpobSimulatorServiceImplTest {
 	@Test
 	public void testGenerate(){
 		service.generatePascabayar(new GeneratorTagihanPascabayar());
+	}
+	
+	@Test
+	public void testSavePembayaran(){
+		TagihanPascabayar t = service.findTagihan(service.findPelangganById("abc")).get(1);
+		PembayaranPascabayar p = createPembayaranPascabayar(t);
+		service.save(p);
+		assertNotNull(p.getId());
+	}
+
+	@Test
+	public void testSavePembayaranSudahLunas(){
+		try {
+			TagihanPascabayar t = service.findTagihan(service.findPelangganById("abc")).get(0);
+			PembayaranPascabayar p = createPembayaranPascabayar(t);
+			service.save(p);
+			Assert.fail("Harusnya IllegalStateException, tapi malahan sukses");
+		} catch (IllegalStateException err){
+			// seharusnya ini
+		} catch (Exception err){
+			Assert.fail("Harusnya IllegalStateException, tapi malahan "+err.getClass().getName());
+		}
+	}
+	
+	@Test
+	public void testDeletePembayaran(){
+		List<PembayaranPascabayar> hasil =service.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI");
+		assertNotNull(hasil);
+		assertTrue(hasil.size() == 1);
+		PembayaranPascabayar p = hasil.get(0);
+		service.delete(p);
+		assertTrue(service.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
+	}
+	
+	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
+		PembayaranPascabayar p = new PembayaranPascabayar();
+		
+		p.setTagihanPascabayar(t);
+		p.setBank("BANKABC");
+		p.setLoket("L-002");
+		p.setMerchantCategory("6012");
+		p.setOperator("endy");
+		p.setSwitcher("ARTIVISI");
+		
+		return p;
 	}
 	
 	private TagihanPascabayar createTagihanPascabayar(Pelanggan p) {

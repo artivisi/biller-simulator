@@ -1,9 +1,11 @@
 package com.artivisi.ppob.simulator.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.artivisi.ppob.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.PembayaranPascabayar;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 
 public interface PpobSimulatorService {
@@ -19,4 +21,8 @@ public interface PpobSimulatorService {
 	public List<TagihanPascabayar> findTagihan(Pelanggan pelanggan);
 	
 	public void generatePascabayar(GeneratorTagihanPascabayar generator);
+	
+	public void save(PembayaranPascabayar pembayaranPascabayar);
+	public void delete(PembayaranPascabayar pembayaranPascabayar);
+	public List<PembayaranPascabayar> findPembayaranPascabayar(Date tanggal, String switcher);
 }
