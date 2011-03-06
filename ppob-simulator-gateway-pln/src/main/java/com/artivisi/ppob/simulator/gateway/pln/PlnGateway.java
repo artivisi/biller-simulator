@@ -145,6 +145,14 @@ public class PlnGateway implements ISORequestListener {
 			return true;
 		}
 		
+		
+		if(!ResponseCode.SUCCESSFUL.equals(p.getResponseCode())) {
+			logger.error("[POSTPAID] - [INQ-REQ] - Pelanggan diset untuk RC [{}]", p.getResponseCode());
+			response.set(39, p.getResponseCode());
+			src.send(response);
+			return true;
+		}
+		
 		List<TagihanPascabayar> daftarTagihan = ppobSimulatorService.findTagihan(p);
 		if(daftarTagihan.size() < 1){
 			logger.error("[POSTPAID] - [INQ-REQ] - Tagihan untuk idpel [{}] tidak ada", idpel);
@@ -172,6 +180,13 @@ public class PlnGateway implements ISORequestListener {
 		
 		response.set(39, ResponseCode.SUCCESSFUL);
 		response.set(48, bit48Response.toString());
+		
+		try {
+			logger.info("[POSTPAID] - [INQ-REQ] - Pelanggan diset untuk hold [{}]", p.getHoldResponse());
+			Thread.sleep(p.getHoldResponse());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
 		
 		src.send(response);
 		return true;

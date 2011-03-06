@@ -16,6 +16,7 @@ import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.joda.time.DateTime;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,7 +45,7 @@ public class PpobSimulatorServiceImplTest {
 		dataSource =  ctx.getBean(DataSource.class);
 	}
 	
-	@Before
+	@Before @After
 	public void resetDatabase() throws Exception {
 		Connection conn = dataSource.getConnection();
 		DatabaseOperation.CLEAN_INSERT.execute(new DatabaseConnection(conn), 

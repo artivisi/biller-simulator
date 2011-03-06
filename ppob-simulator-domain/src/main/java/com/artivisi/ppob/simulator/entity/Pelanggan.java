@@ -39,6 +39,15 @@ public class Pelanggan {
 	@Column(name="power_consuming_category")
 	private String powerConsumingCategory;
 	
+	@NotNull
+	@NotEmpty
+	@Column(name="response_code", nullable=false)
+	private String responseCode = "0000";
+	
+	@NotNull
+	@Column(name="hold_response", nullable=false)
+	private Integer holdResponse = 0;
+	
 	public String getId() {
 		return id;
 	}
@@ -87,7 +96,16 @@ public class Pelanggan {
 	public void setPowerConsumingCategory(String powerConsumingCategory) {
 		this.powerConsumingCategory = powerConsumingCategory;
 	}
-	
-	
-	
+	public String getResponseCode() {
+		return responseCode;
+	}
+	public void setResponseCode(String responseCode) {
+		this.responseCode = responseCode;
+	}
+	public Integer getHoldResponse() {
+		return holdResponse;
+	}
+	public void setHoldResponse(Integer holdResponse) {
+		this.holdResponse = holdResponse;
+	}
 }
