@@ -1,5 +1,6 @@
 package com.artivisi.ppob.simulator.gateway.pln;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -9,6 +10,8 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormat;
 import org.jpos.iso.BaseChannel;
+import org.jpos.iso.ISOException;
+import org.jpos.iso.ISOFilter.VetoException;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISORequestListener;
 import org.jpos.iso.ISOServer;
@@ -84,11 +87,51 @@ public class PlnGateway implements ISORequestListener {
 		ISOMsg response = (ISOMsg) msg.clone();
 		response.setMTI(MTIConstants.INQUIRY_RESPONSE);
 		
-		String bit48Request = msg.getString(48); 
+		String bank = msg.getString(32);
+		if(ppobSimulatorService.findBankByKode(bank) == null){
+			logger.debug("[POSTPAID] - [INQ-REQ] - Bit 32 [{}]", bank);
+			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 32 [{}]", bank);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_BANK_CODE);
+			src.send(response);
+			return true;
+		}
 		
+		String pan = msg.getString(2);
+		if(pan.length() != 5) {
+			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 2 [{}]", pan);
+			response.set(39, ResponseCode.ERROR_INVALID_MESSAGE);
+			src.send(response);
+			return true;
+		}
+		
+		String produk = pan.substring(2);
+		if("501".equals(produk)) {
+			return handleInquiryPostpaid(src, msg, response);
+		} else {
+			logger.error("[POSTPAID] - [INQ-REQ] - Invalid produk [{}]", produk);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_PRODUCT);
+			src.send(response);
+			return true;
+		}
+		
+	}
+
+	private boolean handleInquiryPostpaid(ISOSource src, ISOMsg msg,
+			ISOMsg response) throws ISOException, IOException, VetoException {
+		String bit48Request = msg.getString(48); 
 		if(bit48Request.length() != 19) {
 			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 48 [{}]", bit48Request);
 			response.set(39, ResponseCode.ERROR_INVALID_MESSAGE);
+			src.send(response);
+			return true;
+		}
+		
+
+		String mitra = bit48Request.substring(0,7);
+		if(ppobSimulatorService.findMitraByKode(mitra.trim()) == null){
+			logger.debug("[POSTPAID] - [INQ-REQ] - Mitra [{}]", mitra);
+			logger.error("[POSTPAID] - [INQ-REQ] - Kode mitra tidak ditemukan [{}]", mitra);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_SWITCHING);
 			src.send(response);
 			return true;
 		}
