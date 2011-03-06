@@ -23,6 +23,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.artivisi.ppob.simulator.dto.GeneratorTagihanPascabayar;
+import com.artivisi.ppob.simulator.entity.Bank;
+import com.artivisi.ppob.simulator.entity.Mitra;
 import com.artivisi.ppob.simulator.entity.Pelanggan;
 import com.artivisi.ppob.simulator.entity.PembayaranPascabayar;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
@@ -50,14 +52,73 @@ public class PpobSimulatorServiceImplTest {
 	}
 	
 	@Test
-	public void testSave() {
+	public void testSaveBank(){
+		Bank b = new Bank();
+		b.setKode("BANKIRB");
+		b.setNama("Bank IRB");
+		
+		service.save(b);
+		assertNotNull(b.getId());
+	}
+	
+	@Test
+	public void testDeleteBank(){
+		Bank b = service.findBankById("abc");
+		assertNotNull(b);
+		service.delete(b);
+		assertNull(service.findBankById("abc"));
+	}
+	
+	@Test
+	public void testFindAllBank(){
+		assertTrue(service.findAllBank().size() == 1);
+	}
+
+	@Test
+	public void testBankByKode(){
+		assertNotNull(service.findBankByKode("BANKABC"));
+		assertNull(service.findBankByKode("BANKBCA"));
+	}
+	
+	@Test
+	public void testSaveMitra(){
+		Mitra b = new Mitra();
+		b.setKode("JMI1234");
+		b.setNama("JMI");
+		
+		service.save(b);
+		assertNotNull(b.getId());
+	}
+	
+	@Test
+	public void testDeleteMitra(){
+		Mitra b = service.findMitraById("abc");
+		assertNotNull(b);
+		service.delete(b);
+		assertNull(service.findMitraById("abc"));
+	}
+	
+	@Test
+	public void testFindAllMitra(){
+		assertTrue(service.findAllMitra().size() == 1);
+	}
+
+	@Test
+	public void testMitraByKode(){
+		assertNotNull(service.findMitraByKode("ARTIVIS"));
+		assertNull(service.findMitraByKode("JMI1234"));
+	}
+	
+	
+	@Test
+	public void testSavePelanggan() {
 		Pelanggan p = createPelanggan();
 		service.save(p);
 		assertNotNull(p.getId());
 	}
 
 	@Test
-	public void testDelete() {
+	public void testDeletePelanggan() {
 		Pelanggan p = service.findPelangganById("abc");
 		assertNotNull(p);
 		service.delete(p);

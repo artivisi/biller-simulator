@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+	<m_bank 
+		id="abc"
+		kode="BANKABC"
+		nama="Bank ABC"
+	/>
+
+	<m_mitra 
+		id="abc"
+		kode="ARTIVIS"
+		nama="ArtiVisi Intermedia"
+		admin_fee="1600"
+	/>
+
+
     <m_pelanggan
     	id="abc"
     	idpel="123456789011"
