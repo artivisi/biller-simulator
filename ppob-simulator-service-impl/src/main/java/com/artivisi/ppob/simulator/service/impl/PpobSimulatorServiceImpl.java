@@ -260,6 +260,10 @@ public class PpobSimulatorServiceImpl implements PpobSimulatorService {
 		if(pembayaranPascabayar.getTagihanPascabayar().getLunas()) {
 			throw new IllegalStateException("Sudah Lunas");
 		}
+		
+		pembayaranPascabayar.getTagihanPascabayar().setLunas(true);
+		sessionFactory.getCurrentSession().saveOrUpdate(pembayaranPascabayar.getTagihanPascabayar());
+		
 		sessionFactory.getCurrentSession().saveOrUpdate(pembayaranPascabayar);
 	}
 

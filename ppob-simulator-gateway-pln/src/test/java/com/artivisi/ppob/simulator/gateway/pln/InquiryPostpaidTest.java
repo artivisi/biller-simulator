@@ -11,7 +11,7 @@ import com.artivisi.ppob.simulator.gateway.pln.constants.MTIConstants;
 import com.artivisi.ppob.simulator.gateway.pln.constants.ResponseCode;
 import com.artivisi.ppob.simulator.gateway.pln.jpos.PlnChannel;
 
-public class PostpaidTest extends BaseTest {
+public class InquiryPostpaidTest extends BaseTest {
 	
 	@Test
 	public void testInquiryNormal() throws Exception {

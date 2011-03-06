@@ -138,4 +138,7 @@
     	merchant_category="6012"
     />
     
+    <inquiry_postpaid_response />
+    <inquiry_postpaid_response_detail />
+    
 </dataset>

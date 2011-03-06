@@ -22,11 +22,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.artivisi.ppob.simulator.entity.Pelanggan;
+import com.artivisi.ppob.simulator.entity.PembayaranPascabayar;
 import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.gateway.pln.constants.MTIConstants;
 import com.artivisi.ppob.simulator.gateway.pln.constants.ResponseCode;
+import com.artivisi.ppob.simulator.gateway.pln.entity.InquiryPostpaidResponse;
+import com.artivisi.ppob.simulator.gateway.pln.entity.InquiryPostpaidResponseDetail;
 import com.artivisi.ppob.simulator.gateway.pln.jpos.PlnChannel;
 import com.artivisi.ppob.simulator.gateway.pln.jpos.PlnPackager;
+import com.artivisi.ppob.simulator.gateway.pln.service.PlnService;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
 public class PlnGateway implements ISORequestListener {
@@ -34,6 +38,7 @@ public class PlnGateway implements ISORequestListener {
 	private static final Logger logger = LoggerFactory.getLogger(PlnGateway.class);
 	
 	@Autowired private PpobSimulatorService ppobSimulatorService;
+	@Autowired private PlnService plnService;
 	
 	private Integer port = 11111;
 
@@ -75,12 +80,48 @@ public class PlnGateway implements ISORequestListener {
 			if(MTIConstants.INQUIRY_REQUEST.equals(msg.getMTI())) {
 				return handleInquiryRequest(src, msg);
 			}
+
+			if(MTIConstants.PAYMENT_REQUEST.equals(msg.getMTI())) {
+				return handlePaymentRequest(src, msg);
+			}
 			
 			
 		} catch (Exception err){
 			logger.error(err.getMessage(), err);
 		}
 		return false;
+	}
+
+	private boolean handlePaymentRequest(ISOSource src, ISOMsg msg) throws Exception {
+		ISOMsg response = (ISOMsg) msg.clone();
+		response.setMTI(MTIConstants.PAYMENT_RESPONSE);
+		
+		String bank = msg.getString(32);
+		if(ppobSimulatorService.findBankByKode(bank) == null){
+			logger.debug("[POSTPAID] - [PAY-REQ] - Bit 32 [{}]", bank);
+			logger.error("[POSTPAID] - [PAY-REQ] - Invalid bit 32 [{}]", bank);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_BANK_CODE);
+			src.send(response);
+			return true;
+		}
+		
+		String pan = msg.getString(2);
+		if(pan.length() != 5) {
+			logger.error("[POSTPAID] - [PAY-REQ] - Invalid bit 2 [{}]", pan);
+			response.set(39, ResponseCode.ERROR_INVALID_MESSAGE);
+			src.send(response);
+			return true;
+		}
+		
+		String produk = pan.substring(2);
+		if("501".equals(produk)) {
+			return handlePaymentPostpaid(src, msg, response);
+		} else {
+			logger.error("[POSTPAID] - [PAY-REQ] - Invalid produk [{}]", produk);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_PRODUCT);
+			src.send(response);
+			return true;
+		}
 	}
 
 	private boolean handleInquiryRequest(ISOSource src, ISOMsg msg) throws Exception {
@@ -115,9 +156,56 @@ public class PlnGateway implements ISORequestListener {
 		}
 		
 	}
+	
+	private boolean handlePaymentPostpaid(ISOSource src, ISOMsg msg,ISOMsg response) throws Exception {
+		String bit48Request = msg.getString(48); 
+		if(bit48Request.length() < 55) {
+			logger.error("[POSTPAID] - [PAY-REQ] - Invalid bit 48 [{}]", bit48Request);
+			response.set(39, ResponseCode.ERROR_INVALID_MESSAGE);
+			src.send(response);
+			return true;
+		}
+		
+		String plnRef = bit48Request.substring(23,55).toLowerCase();
+		InquiryPostpaidResponse daftarTagihan = plnService.findInquiryPostpaidResponse(plnRef);
+		
+		if(daftarTagihan == null) {
+			logger.error("[POSTPAID] - [PAY-REQ] - Invalid PLN REF [{}]", plnRef);
+			response.set(39, ResponseCode.ERROR_PLN_REFNUM_NOT_VALID);
+			src.send(response);
+			return true;
+		}
+		
+		String switcher = bit48Request.substring(0,7);
+		Integer hold = 0;
+		
+		for (InquiryPostpaidResponseDetail detail : daftarTagihan.getDetails()) {
+			PembayaranPascabayar payment = new PembayaranPascabayar();
+			payment.setBank(msg.getString(32));
+			payment.setLoket("");
+			payment.setMerchantCategory(msg.getString(26));
+			payment.setOperator("");
+			payment.setSwitcher(switcher);
+			payment.setTagihanPascabayar(detail.getTagihanPascabayar());
+			ppobSimulatorService.save(payment);
+			
+			hold = detail.getTagihanPascabayar().getPelanggan().getHoldResponse();
+		}
 
-	private boolean handleInquiryPostpaid(ISOSource src, ISOMsg msg,
-			ISOMsg response) throws ISOException, IOException, VetoException {
+		response.set(39, ResponseCode.SUCCESSFUL);
+		
+		try {
+			logger.info("[POSTPAID] - [PAY-REQ] - Pelanggan diset untuk hold [{}]", hold);
+			Thread.sleep(hold);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		
+		src.send(response);
+		return true;
+	}
+
+	private boolean handleInquiryPostpaid(ISOSource src, ISOMsg msg,ISOMsg response) throws ISOException, IOException, VetoException {
 		String bit48Request = msg.getString(48); 
 		if(bit48Request.length() != 19) {
 			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 48 [{}]", bit48Request);
@@ -176,7 +264,21 @@ public class PlnGateway implements ISORequestListener {
 		
 		response.set(4, "360"+"0"+StringUtils.leftPad(amount.setScale(0, RoundingMode.HALF_EVEN).toString(), 12, "0"));
 		
-		StringBuffer bit48Response = createBit48InquiryPostpaidResponse(bit48Request, p, daftarTagihan, tagihanDikirim);
+		InquiryPostpaidResponse ipr = new InquiryPostpaidResponse();
+		ipr.setBank(msg.getString(32));
+		ipr.setSwitcher(mitra);
+		ipr.setStan(msg.getString(11));
+		
+		for (TagihanPascabayar tagihanPascabayar : tagihanDikirim) {
+			InquiryPostpaidResponseDetail detail = new InquiryPostpaidResponseDetail();
+			detail.setTagihanPascabayar(tagihanPascabayar);
+			detail.setInquiryPostpaidResponse(ipr);
+			ipr.getDetails().add(detail);
+		}
+		
+		plnService.save(ipr);
+		
+		StringBuffer bit48Response = createBit48InquiryPostpaidResponse(bit48Request, p, daftarTagihan, tagihanDikirim, ipr);
 		
 		response.set(39, ResponseCode.SUCCESSFUL);
 		response.set(48, bit48Response.toString());
@@ -195,12 +297,12 @@ public class PlnGateway implements ISORequestListener {
 	private StringBuffer createBit48InquiryPostpaidResponse(
 			String bit48Request, Pelanggan p,
 			List<TagihanPascabayar> daftarTagihan,
-			List<TagihanPascabayar> tagihanDikirim) {
+			List<TagihanPascabayar> tagihanDikirim, InquiryPostpaidResponse ipr) {
 		StringBuffer bit48Response = new StringBuffer();
 		bit48Response.append(bit48Request);
 		bit48Response.append(tagihanDikirim.size());
 		bit48Response.append(StringUtils.leftPad(String.valueOf(daftarTagihan.size()), 2, "0"));
-		bit48Response.append(tagihanDikirim.get(0).getId());
+		bit48Response.append(ipr.getId().toUpperCase());
 		bit48Response.append(StringUtils.rightPad(p.getNama(), 25, " "));
 		bit48Response.append(StringUtils.rightPad(p.getServiceUnit(), 5, " "));
 		bit48Response.append(StringUtils.rightPad(p.getServiceUnitPhone(), 15, " "));
