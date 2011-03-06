@@ -23,6 +23,7 @@ import com.artivisi.ppob.simulator.entity.TagihanPascabayar;
 import com.artivisi.ppob.simulator.gateway.pln.constants.MTIConstants;
 import com.artivisi.ppob.simulator.gateway.pln.constants.ResponseCode;
 import com.artivisi.ppob.simulator.gateway.pln.jpos.PlnChannel;
+import com.artivisi.ppob.simulator.gateway.pln.jpos.PlnPackager;
 import com.artivisi.ppob.simulator.service.PpobSimulatorService;
 
 public class PlnGateway implements ISORequestListener {
@@ -39,19 +40,23 @@ public class PlnGateway implements ISORequestListener {
 
 	@PostConstruct
 	public void init(){
-		PlnChannel channel = new PlnChannel();
-		ISOServer server = new ISOServer(port, channel, null);
-		server.addISORequestListener(this);
-		
-		org.jpos.util.Logger jposLogger = new org.jpos.util.Logger();
-	    Log4JListener log4JListener = new Log4JListener();
-	    log4JListener.setLevel("info");
-	    jposLogger.addListener(log4JListener);
-	    server.setLogger(jposLogger, "pln-server");
-	    channel.setLogger(jposLogger, "pln-channel");
-	    
-	    new Thread(server).start();
-	    logger.info("Pln Gateway started at port [{}]", port);
+		try {
+			PlnChannel channel = new PlnChannel(new PlnPackager());
+			ISOServer server = new ISOServer(port, channel, null);
+			server.addISORequestListener(this);
+			
+			org.jpos.util.Logger jposLogger = new org.jpos.util.Logger();
+		    Log4JListener log4JListener = new Log4JListener();
+		    log4JListener.setLevel("info");
+		    jposLogger.addListener(log4JListener);
+		    server.setLogger(jposLogger, "pln-server");
+		    channel.setLogger(jposLogger, "pln-channel");
+		    
+		    new Thread(server).start();
+		    logger.info("Pln Gateway started at port [{}]", port);
+		} catch (Exception err){
+			logger.error(err.getMessage(), err);
+		}
 	}
 
 	@Override
@@ -153,7 +158,7 @@ public class PlnGateway implements ISORequestListener {
 			if(BigDecimal.ZERO.compareTo(t.getInsentif()) > 0){
 				bit48Response.append("D");
 			} else {
-				bit48Response.append("D");
+				bit48Response.append("C");
 			}
 			bit48Response.append(StringUtils.leftPad(t.getInsentif().abs().setScale(0, RoundingMode.HALF_EVEN).toString(), 10, "0"));
 			bit48Response.append(StringUtils.leftPad(t.getVat().setScale(0, RoundingMode.HALF_EVEN).toString(), 10, "0"));
