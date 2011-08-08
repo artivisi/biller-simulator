@@ -63,6 +63,7 @@ Untuk kontribusi testing, berikut caranya :
 2. Test fitur-fiturnya.
 3. Kalau ada error/bug yang ditemukan, silakan langsung [membuat issue baru](https://github.com/artivisi/biller-simulator/issues/new).
 Mohon mengikuti [panduan melaporkan bug](http://endy.artivisi.com/blog/java/tips-melaporkan-error/), supaya mudah ditindak lanjuti oleh programmer.
+Bug report maupun request fitur boleh ditulis dalam bahasa Indonesia atau Inggris.
 
 Untuk kontribusi dokumentasi, sementara kami akan menyiapkan dulu template dokumentasinya.
 Bila sudah ada, kami akan update bagian ini dengan langkah-langkah untuk kontribusi.
