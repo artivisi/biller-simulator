@@ -5,6 +5,7 @@
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Project Simulator Tagihan Listrik</name>
+	<inceptionYear>2011</inceptionYear>
 
 	<modules>
         <module>biller-simulator-config</module>
