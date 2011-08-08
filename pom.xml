@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.artivisi.ppob.simulator</groupId>
-	<artifactId>ppob-simulator-parent</artifactId>
+	<groupId>com.artivisi.biller.simulator</groupId>
+	<artifactId>biller-simulator-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Project Simulator Tagihan Listrik</name>
 
 	<modules>
-        <module>ppob-simulator-config</module>
-        <module>ppob-simulator-docs</module>
-        <module>ppob-simulator-domain</module>
-        <module>ppob-simulator-service-impl</module>
-        <module>ppob-simulator-ui-jsf</module>
-        <module>ppob-simulator-gateway-pln</module>        
+        <module>biller-simulator-config</module>
+        <module>biller-simulator-docs</module>
+        <module>biller-simulator-domain</module>
+        <module>biller-simulator-service-impl</module>
+        <module>biller-simulator-ui-jsf</module>
+        <module>biller-simulator-gateway-pln</module>        
     </modules>
 
 
