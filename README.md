@@ -50,7 +50,24 @@ Gateway PLN digunakan untuk melakukan transaksi inquiry dan payment tagihan list
 Cara kontribusi
 ---------------
 Anda ingin berkontribusi? Baguslah kalau begitu.
-Caranya gampang,
+
+Ada beberapa kontribusi yang bisa Anda lakukan, diantaranya :
+
+*  Melakukan testing
+*  Membuatkan dokumentasi
+*  Mengedit source code, baik untuk fix bugs maupun menambah fitur
+
+Untuk kontribusi testing, berikut caranya :
+
+1. Jalankan aplikasinya, yang web atau yang ISO-8583 terserah.
+2. Test fitur-fiturnya.
+3. Kalau ada error/bug yang ditemukan, silakan langsung [membuat issue baru](https://github.com/artivisi/biller-simulator/issues/new).
+Mohon mengikuti [panduan melaporkan bug](http://endy.artivisi.com/blog/java/tips-melaporkan-error/), supaya mudah ditindak lanjuti oleh programmer.
+
+Untuk kontribusi dokumentasi, sementara kami akan menyiapkan dulu template dokumentasinya.
+Bila sudah ada, kami akan update bagian ini dengan langkah-langkah untuk kontribusi.
+
+Untuk kontribusi source code, berikut caranya :
 
 1. Fork repository ini menjadi repository Anda sendiri
 2. Clone ke local untuk diedit
