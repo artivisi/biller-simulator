@@ -7,6 +7,7 @@ Deskripsi
 
 Aplikasi ini merupakan simulator yang digunakan di ArtiVisi untuk melakukan tes terhadap aplikasi payment gateway kami.
 Fitur aplikasi ini :
+
 *  manajemen pelanggan
 *  manajemen dummy data tagihan
 *  Gateway [ISO-8583]() untuk melakukan pembayaran tagihan untuk pelanggan yang ada di database.
