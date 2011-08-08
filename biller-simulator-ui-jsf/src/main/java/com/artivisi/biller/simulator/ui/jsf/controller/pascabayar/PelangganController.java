@@ -28,13 +28,13 @@ import org.springframework.stereotype.Controller;
 
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
-import com.artivisi.biller.simulator.service.PpobSimulatorService;
+import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
 @Controller
 @Scope("session")
 public class PelangganController {
 	
-	@Autowired PpobSimulatorService ppobSimulatorService;
+	@Autowired PlnSimulatorService plnSimulatorService;
 	
 	private List<Pelanggan> semua;
 	private Pelanggan pelanggan = new Pelanggan();
@@ -45,12 +45,12 @@ public class PelangganController {
 	
 	@PostConstruct
 	public void initSemuaPelanggan(){
-		semua = ppobSimulatorService.findAllPelanggan();
+		semua = plnSimulatorService.findAllPelanggan();
 		listModelPelanggan = new ListDataModel<Pelanggan>(semua);
 	}
 	
 	public String simpan(){
-		ppobSimulatorService.save(pelanggan);
+		plnSimulatorService.save(pelanggan);
 		pelanggan = new Pelanggan();
 		refreshListPelanggan();
 		return "list?faces-redirect=true";
@@ -67,25 +67,25 @@ public class PelangganController {
 	}
 	
 	public void delete(){
-		ppobSimulatorService.delete(listModelPelanggan.getRowData());
+		plnSimulatorService.delete(listModelPelanggan.getRowData());
 		refreshListPelanggan();
 	}
 	
 	public String tagihan(){
 		pelanggan = listModelPelanggan.getRowData();
-		tagihanPascabayar = ppobSimulatorService.findTagihan(pelanggan);
+		tagihanPascabayar = plnSimulatorService.findTagihan(pelanggan);
 		listModelTagihan = new ListDataModel<TagihanPascabayar>(tagihanPascabayar);
 		return "/pascabayar/tagihan/list?faces-redirect=true";
 	}
 	
 	public void deleteTagihan(){
-		ppobSimulatorService.delete(listModelTagihan.getRowData());
+		plnSimulatorService.delete(listModelTagihan.getRowData());
 		refreshListTagihan();
 	}
 	
 	public String simpanTagihan(){
 		tagihan.setPelanggan(pelanggan);
-		ppobSimulatorService.save(tagihan);
+		plnSimulatorService.save(tagihan);
 		tagihan = new TagihanPascabayar();
 		refreshListTagihan();
 		return "list?faces-redirect=true";
@@ -116,12 +116,12 @@ public class PelangganController {
 	}
 
 	private void refreshListPelanggan() {
-		semua = ppobSimulatorService.findAllPelanggan();
+		semua = plnSimulatorService.findAllPelanggan();
 		listModelPelanggan = new ListDataModel<Pelanggan>(semua);
 	}
 	
 	private void refreshListTagihan() {
-		tagihanPascabayar = ppobSimulatorService.findTagihan(pelanggan);
+		tagihanPascabayar = plnSimulatorService.findTagihan(pelanggan);
 		listModelTagihan = new ListDataModel<TagihanPascabayar>(tagihanPascabayar);
 	}
 	

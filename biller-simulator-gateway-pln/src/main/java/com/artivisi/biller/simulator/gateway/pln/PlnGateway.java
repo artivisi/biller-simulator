@@ -47,13 +47,15 @@ import com.artivisi.biller.simulator.gateway.pln.entity.InquiryPostpaidResponseD
 import com.artivisi.biller.simulator.gateway.pln.jpos.PlnChannel;
 import com.artivisi.biller.simulator.gateway.pln.jpos.PlnPackager;
 import com.artivisi.biller.simulator.gateway.pln.service.PlnService;
-import com.artivisi.biller.simulator.service.PpobSimulatorService;
+import com.artivisi.biller.simulator.service.BillerSimulatorService;
+import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
 public class PlnGateway implements ISORequestListener {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PlnGateway.class);
 	
-	@Autowired private PpobSimulatorService ppobSimulatorService;
+	@Autowired private PlnSimulatorService plnSimulatorService;
+	@Autowired private BillerSimulatorService billerSimulatorService;
 	@Autowired private PlnService plnService;
 	
 	private Integer port = 11111;
@@ -122,7 +124,7 @@ public class PlnGateway implements ISORequestListener {
 		response.setMTI(MTIConstants.PAYMENT_RESPONSE);
 		
 		String bank = msg.getString(32);
-		if(ppobSimulatorService.findBankByKode(bank) == null){
+		if(billerSimulatorService.findBankByKode(bank) == null){
 			logger.debug("[POSTPAID] - [PAY-REQ] - Bit 32 [{}]", bank);
 			logger.error("[POSTPAID] - [PAY-REQ] - Invalid bit 32 [{}]", bank);
 			response.set(39, ResponseCode.ERROR_UNREGISTERED_BANK_CODE);
@@ -154,7 +156,7 @@ public class PlnGateway implements ISORequestListener {
 		response.setMTI(MTIConstants.INQUIRY_RESPONSE);
 		
 		String bank = msg.getString(32);
-		if(ppobSimulatorService.findBankByKode(bank) == null){
+		if(billerSimulatorService.findBankByKode(bank) == null){
 			logger.debug("[POSTPAID] - [INQ-REQ] - Bit 32 [{}]", bank);
 			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 32 [{}]", bank);
 			response.set(39, ResponseCode.ERROR_UNREGISTERED_BANK_CODE);
@@ -212,7 +214,7 @@ public class PlnGateway implements ISORequestListener {
 			payment.setOperator("");
 			payment.setSwitcher(switcher);
 			payment.setTagihanPascabayar(detail.getTagihanPascabayar());
-			ppobSimulatorService.save(payment);
+			plnSimulatorService.save(payment);
 			
 			hold = detail.getTagihanPascabayar().getPelanggan().getHoldResponse();
 		}
@@ -241,7 +243,7 @@ public class PlnGateway implements ISORequestListener {
 		
 
 		String mitra = bit48Request.substring(0,7);
-		if(ppobSimulatorService.findMitraByKode(mitra.trim()) == null){
+		if(billerSimulatorService.findMitraByKode(mitra.trim()) == null){
 			logger.debug("[POSTPAID] - [INQ-REQ] - Mitra [{}]", mitra);
 			logger.error("[POSTPAID] - [INQ-REQ] - Kode mitra tidak ditemukan [{}]", mitra);
 			response.set(39, ResponseCode.ERROR_UNREGISTERED_SWITCHING);
@@ -250,7 +252,7 @@ public class PlnGateway implements ISORequestListener {
 		}
 		
 		String idpel = bit48Request.substring(7);
-		Pelanggan p = ppobSimulatorService.findPelangganByIdpel(idpel);
+		Pelanggan p = plnSimulatorService.findPelangganByIdpel(idpel);
 		if(p == null) {
 			logger.error("[POSTPAID] - [INQ-REQ] - IDPEL tidak ditemukan [{}]", idpel);
 			response.set(39, ResponseCode.ERROR_UNKNOWN_SUBSCRIBER);
@@ -266,7 +268,7 @@ public class PlnGateway implements ISORequestListener {
 			return true;
 		}
 		
-		List<TagihanPascabayar> daftarTagihan = ppobSimulatorService.findTagihan(p);
+		List<TagihanPascabayar> daftarTagihan = plnSimulatorService.findTagihan(p);
 		if(daftarTagihan.size() < 1){
 			logger.error("[POSTPAID] - [INQ-REQ] - Tagihan untuk idpel [{}] tidak ada", idpel);
 			response.set(39, ResponseCode.ERROR_CURRENT_BILL_IS_NOT_AVAILABLE);

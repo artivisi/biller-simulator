@@ -20,18 +20,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
-import com.artivisi.biller.simulator.service.PpobSimulatorService;
+import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
 @Controller
 @Scope("request")
 public class TagihanController {
-	@Autowired private PpobSimulatorService ppobSimulatorService;
+	@Autowired private PlnSimulatorService plnSimulatorService;
 	private GeneratorTagihanPascabayar generator = new GeneratorTagihanPascabayar();
 	
 	@Autowired PelangganController pelangganController;
 	
 	public String generate(){
-		ppobSimulatorService.generatePascabayar(generator);
+		plnSimulatorService.generatePascabayar(generator);
 		generator = new GeneratorTagihanPascabayar();
 		pelangganController.initSemuaPelanggan();
 		return "/pascabayar/pelanggan/list?faces-redirect=true";
