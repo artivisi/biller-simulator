@@ -33,7 +33,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.artivisi.biller.simulator.gateway.pln.jpos.PlnChannel;
 import com.artivisi.biller.simulator.gateway.pln.jpos.PlnPackager;
 
-public class BaseTest {
+public abstract class BaseTest {
 	
 	private static AbstractApplicationContext ctx;
 	private static DataSource dataSource;
@@ -59,7 +59,7 @@ public class BaseTest {
 	public void resetDatabase() throws Exception {
 		Connection conn = dataSource.getConnection();
 		DatabaseOperation.CLEAN_INSERT.execute(new DatabaseConnection(conn), 
-				new FlatXmlDataSetBuilder().build(new File("../biller-simulator-service-impl/src/test/resources/pelanggan.xml")));
+				new FlatXmlDataSetBuilder().build(new File("src/test/resources/pelanggan.xml")));
 	}
 	
 	public PlnChannel createChannel() throws Exception {

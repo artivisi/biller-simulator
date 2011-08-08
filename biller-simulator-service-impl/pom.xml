@@ -31,5 +31,61 @@
 			<version>3.12.0.GA</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>1.4</version>
+	
+				<dependencies>
+					<!-- specify the dependent jdbc driver here -->
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.9</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+	
+				<!-- common configuration shared by all executions -->
+				<configuration>
+					<driver>${jdbc.driver}</driver>
+					<url>${jdbc.url}</url>
+					<username>${jdbc.username}</username>
+					<password>${jdbc.password}</password>
+					<skip>${maven.test.skip}</skip>
+				</configuration>
+	
+				<executions>
+					<execution>
+						<id>drop-db-before-test-if-any</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<autocommit>true</autocommit>
+							<onError>continue</onError>
+							<sqlCommand>drop database if exists ppob_simulator</sqlCommand>
+						</configuration>
+					</execution>
+	
+					<execution>
+						<id>create-db</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<autocommit>true</autocommit>
+							<sqlCommand>create database ppob_simulator</sqlCommand>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

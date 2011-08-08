@@ -16,13 +16,19 @@
     </modules>
 
 
-    <!-- Shared version number properties -->
     <properties>
+	    <!-- Shared version number properties -->
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>  
   	    <org.hibernate.version>3.6.0.Final</org.hibernate.version>  
         <org.slf4j.version>1.6.1</org.slf4j.version>   
         <ch.qos.logback.version>0.9.27</ch.qos.logback.version>   
         <joda-time.version>1.6.2</joda-time.version>
+        
+        <!-- konfigurasi database development -->
+        <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+        <jdbc.url>jdbc:mysql://localhost</jdbc.url>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>admin</jdbc.password>
     </properties>
     
     

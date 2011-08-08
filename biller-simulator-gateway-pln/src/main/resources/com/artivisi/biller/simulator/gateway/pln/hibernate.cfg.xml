@@ -19,7 +19,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="com.artivisi.ppob.simulator.gateway.pln.entity.InquiryPostpaidResponse" />
-		<mapping class="com.artivisi.ppob.simulator.gateway.pln.entity.InquiryPostpaidResponseDetail" />
+		<mapping class="com.artivisi.biller.simulator.gateway.pln.entity.InquiryPostpaidResponse" />
+		<mapping class="com.artivisi.biller.simulator.gateway.pln.entity.InquiryPostpaidResponseDetail" />
 	</session-factory>
 </hibernate-configuration>

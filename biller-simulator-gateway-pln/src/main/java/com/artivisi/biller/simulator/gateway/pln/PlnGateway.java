@@ -21,6 +21,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormat;
@@ -56,7 +57,7 @@ public class PlnGateway implements ISORequestListener {
 	@Autowired private PlnService plnService;
 	
 	private Integer port = 11111;
-
+	private ISOServer server;
 	public PlnGateway(Integer port) {
 		this.port = port;
 	}
@@ -65,7 +66,7 @@ public class PlnGateway implements ISORequestListener {
 	public void init(){
 		try {
 			PlnChannel channel = new PlnChannel(new PlnPackager());
-			ISOServer server = new ISOServer(port, channel, null);
+			server = new ISOServer(port, channel, null);
 			server.addISORequestListener(this);
 			
 			org.jpos.util.Logger jposLogger = new org.jpos.util.Logger();
@@ -78,6 +79,15 @@ public class PlnGateway implements ISORequestListener {
 		    new Thread(server).start();
 		    logger.info("Pln Gateway started at port [{}]", port);
 		} catch (Exception err){
+			logger.error(err.getMessage(), err);
+		}
+	}
+	
+	@PreDestroy
+	public void shutdown(){
+		try {
+			server.shutdown();
+		} catch (Exception err) {
 			logger.error(err.getMessage(), err);
 		}
 	}
