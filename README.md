@@ -22,6 +22,7 @@ Teknologi yang digunakan
 *  MySQL 5.1
 *  Jetty 6.1.26
 *  Maven 2.2.1
+*  jPOS 1.7.0
 
 
 Cara menggunakan
