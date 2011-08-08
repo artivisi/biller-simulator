@@ -14,7 +14,7 @@ Fitur aplikasi ini :
 
 
 Teknologi yang digunakan
-----------------
+------------------------
 
 *  Java SDK 1.6
 *  Spring Framework 3.0.5
@@ -25,15 +25,27 @@ Teknologi yang digunakan
 *  jPOS 1.7.0
 
 
-Cara menggunakan
-----------------
+Cara menjalankan aplikasi web
+-----------------------------
 
-1. Download source codenya dan extract
-2. Buka command prompt, lalu masuk ke folder tempat aplikasi diextract
-3. Jalankan mvn clean install
-4. Masuk ke folder biller-simulator-ui-jsf
-5. Jalankan mvn clean jetty:run
-6. Arahkan browser ke http://localhost:8080/biller-simulator-ui-jsf/faces/index.xhtml
+Aplikasi web digunakan untuk mengelola data pelanggan dan tagihan.
+
+1. Buka command prompt, lalu masuk ke folder tempat source code aplikasi
+2. Jalankan mvn clean install
+3. Masuk ke folder biller-simulator-ui-jsf
+4. Jalankan mvn clean jetty:run
+5. Arahkan browser ke http://localhost:8080/biller-simulator-ui-jsf/faces/index.xhtml
+
+Cara menjalankan gateway pln
+-----------------------------
+
+Gateway PLN digunakan untuk melakukan transaksi inquiry dan payment tagihan listrik melalui protokol ISO-8583
+
+1. Buka command prompt, lalu masuk ke folder tempat source code aplikasi
+2. Jalankan mvn clean install
+3. Masuk ke folder biller-simulator-gateway-pln
+4. Jalankan mvn exec:java -Dexec.mainClass="com.artivisi.biller.simulator.gateway.pln.Launcher"
+5. ISO-8583 gateway siap menunggu di port 11111
 
 Cara kontribusi
 ---------------
