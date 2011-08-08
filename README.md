@@ -37,7 +37,7 @@ Cara menggunakan
 
 Cara kontribusi
 ---------------
-Anda ingin menyumbangkan tulisan? Baguslah kalau begitu.
+Anda ingin berkontribusi? Baguslah kalau begitu.
 Caranya gampang,
 
 1. Fork repository ini menjadi repository Anda sendiri
