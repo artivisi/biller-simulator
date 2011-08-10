@@ -43,11 +43,13 @@ import com.artivisi.biller.simulator.entity.Mitra;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
-import com.artivisi.biller.simulator.service.PpobSimulatorService;
+import com.artivisi.biller.simulator.service.BillerSimulatorService;
+import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
 public class PpobSimulatorServiceImplTest {
 
-	private static PpobSimulatorService service;
+	private static BillerSimulatorService billerService;
+	private static PlnSimulatorService plnService;
 	private static DataSource dataSource;
 	
 	@BeforeClass
@@ -55,13 +57,22 @@ public class PpobSimulatorServiceImplTest {
 		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:com/artivisi/**/applicationContext.xml");
 		ctx.registerShutdownHook();
 		
-		service = ctx.getBean(PpobSimulatorService.class);
+		billerService = ctx.getBean(BillerSimulatorService.class);
+		plnService = ctx.getBean(PlnSimulatorService.class);
 		dataSource =  ctx.getBean(DataSource.class);
 	}
 	
 	@Before
 	public void resetDatabase() throws Exception {
 		Connection conn = dataSource.getConnection();
+		
+		String sqlDropTableInquiryDetail = "drop table if exists inquiry_postpaid_response_detail";
+		conn.createStatement().executeUpdate(sqlDropTableInquiryDetail);
+		
+		String sqlDropTableInquiry = "drop table if exists inquiry_postpaid_response";
+		conn.createStatement().executeUpdate(sqlDropTableInquiry);
+		
+		
 		DatabaseOperation.CLEAN_INSERT.execute(new DatabaseConnection(conn), 
 				new FlatXmlDataSetBuilder().build(new File("src/test/resources/pelanggan.xml")));
 	}
@@ -72,27 +83,27 @@ public class PpobSimulatorServiceImplTest {
 		b.setKode("BANKIRB");
 		b.setNama("Bank IRB");
 		
-		service.save(b);
+		billerService.save(b);
 		assertNotNull(b.getId());
 	}
 	
 	@Test
 	public void testDeleteBank(){
-		Bank b = service.findBankById("abc");
+		Bank b = billerService.findBankById("abc");
 		assertNotNull(b);
-		service.delete(b);
-		assertNull(service.findBankById("abc"));
+		billerService.delete(b);
+		assertNull(billerService.findBankById("abc"));
 	}
 	
 	@Test
 	public void testFindAllBank(){
-		assertTrue(service.findAllBank().size() == 1);
+		assertTrue(billerService.findAllBank().size() == 1);
 	}
 
 	@Test
 	public void testBankByKode(){
-		assertNotNull(service.findBankByKode("BANKABC"));
-		assertNull(service.findBankByKode("BANKBCA"));
+		assertNotNull(billerService.findBankByKode("BANKABC"));
+		assertNull(billerService.findBankByKode("BANKBCA"));
 	}
 	
 	@Test
@@ -101,117 +112,117 @@ public class PpobSimulatorServiceImplTest {
 		b.setKode("JMI1234");
 		b.setNama("JMI");
 		
-		service.save(b);
+		billerService.save(b);
 		assertNotNull(b.getId());
 	}
 	
 	@Test
 	public void testDeleteMitra(){
-		Mitra b = service.findMitraById("abc");
+		Mitra b = billerService.findMitraById("abc");
 		assertNotNull(b);
-		service.delete(b);
-		assertNull(service.findMitraById("abc"));
+		billerService.delete(b);
+		assertNull(billerService.findMitraById("abc"));
 	}
 	
 	@Test
 	public void testFindAllMitra(){
-		assertTrue(service.findAllMitra().size() == 1);
+		assertTrue(billerService.findAllMitra().size() == 1);
 	}
 
 	@Test
 	public void testMitraByKode(){
-		assertNotNull(service.findMitraByKode("ARTIVIS"));
-		assertNull(service.findMitraByKode("JMI1234"));
+		assertNotNull(billerService.findMitraByKode("ARTIVIS"));
+		assertNull(billerService.findMitraByKode("JMI1234"));
 	}
 	
 	
 	@Test
 	public void testSavePelanggan() {
 		Pelanggan p = createPelanggan();
-		service.save(p);
+		plnService.save(p);
 		assertNotNull(p.getId());
 	}
 
 	@Test
 	public void testDeletePelanggan() {
-		Pelanggan p = service.findPelangganById("abc");
+		Pelanggan p = plnService.findPelangganById("abc");
 		assertNotNull(p);
-		service.delete(p);
+		plnService.delete(p);
 		
-		Pelanggan p2 = service.findPelangganById("abc");
+		Pelanggan p2 = plnService.findPelangganById("abc");
 		assertNull(p2);
 	}
 
 	@Test
 	public void testFindAllPelanggan() {
-		List<Pelanggan> all = service.findAllPelanggan();
+		List<Pelanggan> all = plnService.findAllPelanggan();
 		assertTrue(all.size() == 3);
 	}
 
 	@Test
 	public void testFindPelangganByIdpel() {
-		assertNull(service.findPelangganByIdpel(null));
-		assertNull(service.findPelangganByIdpel(""));
-		assertNull(service.findPelangganByIdpel("210987654321"));
-		assertNotNull(service.findPelangganByIdpel("123456789012"));
+		assertNull(plnService.findPelangganByIdpel(null));
+		assertNull(plnService.findPelangganByIdpel(""));
+		assertNull(plnService.findPelangganByIdpel("210987654321"));
+		assertNotNull(plnService.findPelangganByIdpel("123456789012"));
 	}
 
 	@Test
 	public void testFindPelangganByMeterNumber() {
-		assertNull(service.findPelangganByMeterNumber(null));
-		assertNull(service.findPelangganByMeterNumber(""));
-		assertNull(service.findPelangganByMeterNumber("10987654321"));
-		assertNotNull(service.findPelangganByMeterNumber("12345678901"));
+		assertNull(plnService.findPelangganByMeterNumber(null));
+		assertNull(plnService.findPelangganByMeterNumber(""));
+		assertNull(plnService.findPelangganByMeterNumber("10987654321"));
+		assertNotNull(plnService.findPelangganByMeterNumber("12345678901"));
 	}
 	
 	@Test
 	public void testSaveTagihanPascabayar(){
-		Pelanggan p = service.findPelangganById("def");
+		Pelanggan p = plnService.findPelangganById("def");
 		TagihanPascabayar t = createTagihanPascabayar(p);
-		service.save(t);
+		plnService.save(t);
 		assertNotNull(t.getId());
 	}
 	
 	@Test
 	public void testDeleteTagihanPascabayar() {
-		Pelanggan p = service.findPelangganById("abc");
-		List<TagihanPascabayar> hasil = service.findTagihan(p);
+		Pelanggan p = plnService.findPelangganById("abc");
+		List<TagihanPascabayar> hasil = plnService.findTagihan(p);
 		
 		TagihanPascabayar t = hasil.get(0);
-		service.delete(t);
+		plnService.delete(t);
 		
-		assertTrue(service.findTagihan(p).size() == 1);
+		assertTrue(plnService.findTagihan(p).size() == 1);
 	}
 	
 	@Test
 	public void testFindTagihanByPelanggan(){
-		Pelanggan p = service.findPelangganById("abc");
-		List<TagihanPascabayar> hasil = service.findTagihan(p);
+		Pelanggan p = plnService.findPelangganById("abc");
+		List<TagihanPascabayar> hasil = plnService.findTagihan(p);
 		assertTrue(hasil.size() == 2);
 	}
 	
 	@Test
 	public void testGenerate(){
-		service.generatePascabayar(new GeneratorTagihanPascabayar());
+		plnService.generatePascabayar(new GeneratorTagihanPascabayar());
 	}
 	
 	@Test
 	public void testSavePembayaran(){
-		TagihanPascabayar t = service.findTagihan(service.findPelangganById("abc")).get(1);
+		TagihanPascabayar t = plnService.findTagihan(plnService.findPelangganById("abc")).get(1);
 		PembayaranPascabayar p = createPembayaranPascabayar(t);
-		service.save(p);
+		plnService.save(p);
 		assertNotNull(p.getId());
 	}
 
 	
 	@Test
 	public void testDeletePembayaran(){
-		List<PembayaranPascabayar> hasil =service.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI");
+		List<PembayaranPascabayar> hasil =plnService.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI");
 		assertNotNull(hasil);
 		assertTrue(hasil.size() == 1);
 		PembayaranPascabayar p = hasil.get(0);
-		service.delete(p);
-		assertTrue(service.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
+		plnService.delete(p);
+		assertTrue(plnService.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
 	}
 	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
