@@ -24,6 +24,23 @@ Teknologi yang digunakan
 *  Maven 2.2.1
 *  jPOS 1.7.0
 
+Cara menyiapkan database
+-----------------------------
+Aplikasi ini menggunakan Hibernate, sehingga secara teoritis mendukung [semua database yang didukung oleh Hibernate](http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/session-configuration.html#configuration-optional-dialects). Walaupun demikian, development dan test dilakukan menggunakan MySQL.
+
+Konfigurasi koneksi database dilakukan di beberapa tempat, yaitu :
+*  pom.xml di root folder : digunakan untuk drop dan create database, dijalankan pada saat automated test dieksekusi
+*  jdbc.properties di folder biller-simulator-config/src/main/resources : digunakan oleh aplikasi pada saat dijalankan
+
+Untuk konfigurasi di pom.xml, berikan username MySQL yang memiliki privileges untuk drop dan create database. Biasanya saya menggunakan user root saja supaya gampang.
+Untuk konfigurasi di jdbc.properties, usernamenya cukup memiliki akses ke database yang digunakan di aplikasi saja.
+
+Berikut sintaks SQL untuk membuat username, password, dan database di MySQL. Perintah ini dijalankan dengan user root
+
+```sql
+create database ppob_simulator;
+grant all on ppob_simulator.* to ppob_simulator identified by 'ppob_simulator';
+```
 
 Cara menjalankan aplikasi web
 -----------------------------
