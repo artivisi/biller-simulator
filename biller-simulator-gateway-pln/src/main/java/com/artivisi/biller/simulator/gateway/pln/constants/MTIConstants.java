@@ -16,14 +16,14 @@
 package com.artivisi.biller.simulator.gateway.pln.constants;
 
 public abstract class MTIConstants {
-	public static final String NETWORK_MANAGEMENT_REQUEST = "2800";
-	public static final String NETWORK_MANAGEMENT_RESPONSE = "2810";
-	public static final String INQUIRY_REQUEST = "2100";
-	public static final String INQUIRY_RESPONSE = "2110";
-	public static final String PAYMENT_REQUEST = "2200";
-	public static final String PAYMENT_RESPONSE = "2210";
-	public static final String REVERSAL_REQUEST = "2400";
-	public static final String REVERSAL_RESPONSE = "2410";
-	public static final String REVERSAL_REPEAT_REQUEST = "2401";
-	public static final String REVERSAL_REPEAT_RESPONSE = "2411";
+	public static final String NETWORK_MANAGEMENT_REQUEST = "0800";
+	public static final String NETWORK_MANAGEMENT_RESPONSE = "0810";
+	public static final String INQUIRY_REQUEST = "0100";
+	public static final String INQUIRY_RESPONSE = "0110";
+	public static final String PAYMENT_REQUEST = "0200";
+	public static final String PAYMENT_RESPONSE = "0210";
+	public static final String REVERSAL_REQUEST = "0400";
+	public static final String REVERSAL_RESPONSE = "0410";
+	public static final String REVERSAL_REPEAT_REQUEST = "0401";
+	public static final String REVERSAL_REPEAT_RESPONSE = "0411";
 }
