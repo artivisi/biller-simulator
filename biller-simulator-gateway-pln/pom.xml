@@ -84,8 +84,8 @@
 							<goal>execute</goal>
 						</goals>
 						<configuration>
-							<url>jdbc:mysql://localhost/belajar</url>
 							<autocommit>true</autocommit>
+							<onError>continue</onError>
 							<sqlCommand>drop database if exists ppob_simulator</sqlCommand>
 						</configuration>
 					</execution>
