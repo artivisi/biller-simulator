@@ -1,3 +1,6 @@
+#Project
+biller-simulator-config/src/main/resources/jdbc.properties
+
 # Eclipse
 .settings
 .metadata
@@ -10,6 +13,10 @@ libraries
 
 # SpringSource Tool Suite
 .springBeans
+biller-simulator-config/src/main/resources/META-INF/
+biller-simulator-domain/src/main/java/META-INF/
+biller-simulator-service-impl/src/main/java/META-INF/
+
 
 # Gradle
 .gradle
@@ -21,6 +28,3 @@ private
 
 # Jasper Report
 *.bak
-
-
-
