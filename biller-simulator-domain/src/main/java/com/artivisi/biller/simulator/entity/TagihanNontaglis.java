@@ -72,6 +72,12 @@ public class TagihanNontaglis {
 	private BigDecimal adminChargeUnit ;
 	@Column(name="admin_charge",nullable=false)
 	private BigDecimal adminCharge ;
+	@Column(name="mutation_number",nullable=false)
+	private Integer mutationNumber ;
+	@Column(name="subscriber_segmentation",nullable=false)
+	private Integer subscriberSegmentation ;
+	@Column(name="power_consuming_category",nullable=false)
+	private Integer powerConsumingCategory ;
 	public String getId() {
 		return id;
 	}
@@ -205,6 +211,23 @@ public class TagihanNontaglis {
 	public void setAdminCharge(BigDecimal adminCharge) {
 		this.adminCharge = adminCharge;
 	}
-	
+	public Integer getMutationNumber() {
+		return mutationNumber;
+	}
+	public void setMutationNumber(Integer mutationNumber) {
+		this.mutationNumber = mutationNumber;
+	}
+	public Integer getSubscriberSegmentation() {
+		return subscriberSegmentation;
+	}
+	public void setSubscriberSegmentation(Integer subscriberSegmentation) {
+		this.subscriberSegmentation = subscriberSegmentation;
+	}
+	public Integer getPowerConsumingCategory() {
+		return powerConsumingCategory;
+	}
+	public void setPowerConsumingCategory(Integer powerConsumingCategory) {
+		this.powerConsumingCategory = powerConsumingCategory;
+	}
 	
 }
