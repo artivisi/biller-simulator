@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,25 +27,50 @@ public class TagihanNontaglis {
 	@JoinColumn(name="id_pelanggan", nullable=false)
 	private Pelanggan pelanggan;
 	
+	@Column(name="switcher_id", nullable=false)
 	private String switcherId ;
+	@Column(name="registration_number",nullable=false)
 	private BigDecimal registrationNumber ;
+	@Column(name="area_code", nullable=false)
 	private Integer areaCode ;
+	@Column(name="transaction_code",nullable=false)
 	private Integer transactionCode ;
+	@Column(name="transaction_name",nullable=false)
 	private String transactionName ;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="registration_date", nullable=false)
 	private Date registrationDate ;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="expiration_date", nullable=false)
 	private Date expirationDate ;
+	
+	@Column(name="subscriber_id",nullable=false)
 	private BigDecimal subscriberId ;
+	@Column(name="subscriber_name",nullable=false)
 	private String subscriberName ;
+	@Column(name="ref_number",nullable=false)
 	private String plnRefNumber ;
-	private String finnetReceiptRefNumber ;
+	@Column(name="receipt_number",nullable=false)
+	private String caReceiptRefNumber ;
+	@Column(name="service_unit",nullable=false)
 	private String serviceUnit ;
+	@Column(name="service_unit_address",nullable=false)
 	private String serviceUnitAdress ;
+	@Column(name="service_unit_phone",nullable=false)
 	private String serviceUnitPhone ;
+	@Column(name="total_amount_unit",nullable=false)
 	private BigDecimal totalTransactionAmountMinorUnit ;
+	@Column(name="total_amount",nullable=false)
 	private BigDecimal totalTransactionAmount ;
+	@Column(name="pln_bil_unit",nullable=false)
 	private BigDecimal plnBillMinorUnit ;
+	@Column(name="rptag",nullable=false)
 	private BigDecimal rptag ;
+	@Column(name="charge_unit",nullable=false)
 	private BigDecimal adminChargeUnit ;
+	@Column(name="admin_charge",nullable=false)
 	private BigDecimal adminCharge ;
 	public String getId() {
 		return id;
@@ -116,11 +144,11 @@ public class TagihanNontaglis {
 	public void setPlnRefNumber(String plnRefNumber) {
 		this.plnRefNumber = plnRefNumber;
 	}
-	public String getFinnetReceiptRefNumber() {
-		return finnetReceiptRefNumber;
+	public String getCaReceiptRefNumber() {
+		return caReceiptRefNumber;
 	}
-	public void setFinnetReceiptRefNumber(String finnetReceiptRefNumber) {
-		this.finnetReceiptRefNumber = finnetReceiptRefNumber;
+	public void setCaReceiptRefNumber(String caReceiptRefNumber) {
+		this.caReceiptRefNumber = caReceiptRefNumber;
 	}
 	public String getServiceUnit() {
 		return serviceUnit;
