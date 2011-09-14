@@ -31,6 +31,7 @@ import org.springframework.util.StringUtils;
 import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
+import com.artivisi.biller.simulator.entity.TagihanNontaglis;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
 import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
@@ -227,5 +228,20 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 		.setDate("tanggal", tanggal)
 		.setString("switcher", switcher.trim())
 		.list();
+	}
+
+	@Override
+	public void save(TagihanNontaglis tagihanNontaglis) {
+		sessionFactory.getCurrentSession().saveOrUpdate(tagihanNontaglis) ;
+	}
+
+	@Override
+	public void delete(TagihanNontaglis tagihanNontaglis) {
+	}
+
+	@Override
+	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis) 
+	{
+		return null ;
 	}
 }
