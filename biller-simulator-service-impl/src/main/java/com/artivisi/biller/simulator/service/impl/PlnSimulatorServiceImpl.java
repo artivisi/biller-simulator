@@ -240,8 +240,7 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 	}
 
 	@Override
-	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis) 
-	{
+	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis) {
 		return null ;
 	}
 }
