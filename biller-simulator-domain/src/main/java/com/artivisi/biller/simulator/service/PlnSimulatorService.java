@@ -22,6 +22,7 @@ import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
+import com.artivisi.biller.simulator.entity.TagihanNontaglisDetail;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
 
 public interface PlnSimulatorService {
@@ -39,6 +40,10 @@ public interface PlnSimulatorService {
 	public void save(TagihanNontaglis tagihanNontaglis);
 	public void delete(TagihanNontaglis tagihanNontaglis);
 	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis);
+
+	public void save(TagihanNontaglisDetail tagihanNontaglisDetail);
+	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail);
+	public List<TagihanNontaglis> findTagihanNontaglisDetail(TagihanNontaglisDetail tagihanNontaglisDetail);
 	
 	public void generatePascabayar(GeneratorTagihanPascabayar generator);
 	

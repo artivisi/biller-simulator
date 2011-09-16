@@ -51,6 +51,7 @@ import com.artivisi.biller.simulator.entity.Mitra;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
+import com.artivisi.biller.simulator.entity.TagihanNontaglisDetail;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
 import com.artivisi.biller.simulator.service.BillerSimulatorService;
 import com.artivisi.biller.simulator.service.PlnSimulatorService;
@@ -242,6 +243,17 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(t.getId());
 	}
 	
+	@Test
+	public void testSaveTagihannontaglisDetail(){
+		TagihanNontaglisDetail t = new TagihanNontaglisDetail();
+		t.setTotalRepeat(new Integer(2));
+		t.setCustomDetailUnit(new Integer(0));
+		t.setCustomDetailCode(new Integer(0));
+		t.setCustomDetailValueAmount(new Integer(0));
+		plnService.save(t);
+		assertNotNull(t.getId());
+	}
+	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
 		PembayaranPascabayar p = new PembayaranPascabayar();
 		
@@ -289,32 +301,32 @@ public class PpobSimulatorServiceImplTest {
 	}
 	
 	private TagihanNontaglis createTagihanNontaglis(Pelanggan p){
-		TagihanNontaglis tag = new TagihanNontaglis();
-		tag.setPelanggan(p);
-		tag.setSwitcherId("xyz");
-		tag.setSubscriberName("Fanani M. Ihsan");
-		tag.setRegistrationNumber(new BigDecimal(987654567)) ;
-		tag.setAreaCode(new Integer(876545)) ;
-		tag.setTransactionCode(new Integer(9567876)) ;
-		tag.setTransactionName("transaction");
-		tag.setRegistrationDate(new Date());
-		tag.setExpirationDate(new Date());
-		tag.setSubscriberId(new BigDecimal(74565656)) ;
-		tag.setPlnRefNumber("k09876567jjjfjh");
-		tag.setCaReceiptRefNumber("abcdefghij");
-		tag.setServiceUnit("fkakkkfas");
-		tag.setServiceUnitAdress("xyz");
-		tag.setServiceUnitPhone("021");
-		tag.setTotalTransactionAmountMinorUnit(new BigDecimal(0));
-		tag.setTotalTransactionAmount(new BigDecimal("90000"));
-		tag.setPlnBillMinorUnit(new BigDecimal("100000"));
-		tag.setRptag(new BigDecimal(80000));
-		tag.setAdminChargeUnit(new BigDecimal(1));
-		tag.setAdminCharge(new BigDecimal(1600));
-		tag.setMutationNumber(new Integer(0));
-		tag.setSubscriberSegmentation(new Integer(0));
-		tag.setPowerConsumingCategory(new Integer(950));
-		return tag;
+		TagihanNontaglis t = new TagihanNontaglis();
+		t.setPelanggan(p);
+		t.setSwitcherId("xyz");
+		t.setSubscriberName("Fanani M. Ihsan");
+		t.setRegistrationNumber(new BigDecimal(987654567)) ;
+		t.setAreaCode(new Integer(876545)) ;
+		t.setTransactionCode(new Integer(9567876)) ;
+		t.setTransactionName("transaction");
+		t.setRegistrationDate(new Date());
+		t.setExpirationDate(new Date());
+		t.setSubscriberId(new BigDecimal(74565656)) ;
+		t.setPlnRefNumber("k09876567jjjfjh");
+		t.setCaReceiptRefNumber("abcdefghij");
+		t.setServiceUnit("fkakkkfas");
+		t.setServiceUnitAdress("xyz");
+		t.setServiceUnitPhone("021");
+		t.setTotalTransactionAmountMinorUnit(new BigDecimal(0));
+		t.setTotalTransactionAmount(new BigDecimal("90000"));
+		t.setPlnBillMinorUnit(new BigDecimal("100000"));
+		t.setRptag(new BigDecimal(80000));
+		t.setAdminChargeUnit(new BigDecimal(1));
+		t.setAdminCharge(new BigDecimal(1600));
+		t.setMutationNumber(new Integer(0));
+		t.setSubscriberSegmentation(new Integer(0));
+		t.setPowerConsumingCategory(new Integer(950));
+		return t;
 	}
 
 }

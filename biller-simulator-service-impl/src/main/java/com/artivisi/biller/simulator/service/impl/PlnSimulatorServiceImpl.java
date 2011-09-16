@@ -32,6 +32,7 @@ import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
+import com.artivisi.biller.simulator.entity.TagihanNontaglisDetail;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
 import com.artivisi.biller.simulator.service.PlnSimulatorService;
 
@@ -242,5 +243,24 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 	@Override
 	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis) {
 		return null ;
+	}
+
+	@Override
+	public void save(TagihanNontaglisDetail tagihanNontaglisDetail) {
+		sessionFactory.getCurrentSession().saveOrUpdate(tagihanNontaglisDetail) ;
+		
+	}
+
+	@Override
+	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<TagihanNontaglis> findTagihanNontaglisDetail(
+			TagihanNontaglisDetail tagihanNontaglisDetail) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
