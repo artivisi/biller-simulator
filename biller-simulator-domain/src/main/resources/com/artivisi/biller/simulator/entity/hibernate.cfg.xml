@@ -25,5 +25,6 @@
 		<mapping class="com.artivisi.biller.simulator.entity.TagihanPascabayar" />
 		<mapping class="com.artivisi.biller.simulator.entity.PembayaranPascabayar" />
         <mapping class="com.artivisi.biller.simulator.entity.TagihanNontaglis" />
+        <mapping class="com.artivisi.biller.simulator.entity.TagihanNontaglisDetail" />
 	</session-factory>
 </hibernate-configuration>
