@@ -292,6 +292,28 @@ public class PpobSimulatorServiceImplTest {
 		TagihanNontaglis tag = new TagihanNontaglis();
 		tag.setPelanggan(p);
 		tag.setSwitcherId("xyz");
+		tag.setSubscriberName("Fanani M. Ihsan");
+		tag.setRegistrationNumber(new BigDecimal(987654567)) ;
+		tag.setAreaCode(new Integer(876545)) ;
+		tag.setTransactionCode(new Integer(9567876)) ;
+		tag.setTransactionName("transaction");
+		tag.setRegistrationDate(new Date());
+		tag.setExpirationDate(new Date());
+		tag.setSubscriberId(new BigDecimal(74565656)) ;
+		tag.setPlnRefNumber("k09876567jjjfjh");
+		tag.setCaReceiptRefNumber("abcdefghij");
+		tag.setServiceUnit("fkakkkfas");
+		tag.setServiceUnitAdress("xyz");
+		tag.setServiceUnitPhone("021");
+		tag.setTotalTransactionAmountMinorUnit(new BigDecimal(0));
+		tag.setTotalTransactionAmount(new BigDecimal("90000"));
+		tag.setPlnBillMinorUnit(new BigDecimal("100000"));
+		tag.setRptag(new BigDecimal(80000));
+		tag.setAdminChargeUnit(new BigDecimal(1));
+		tag.setAdminCharge(new BigDecimal(1600));
+		tag.setMutationNumber(new Integer(0));
+		tag.setSubscriberSegmentation(new Integer(0));
+		tag.setPowerConsumingCategory(new Integer(950));
 		return tag;
 	}
 
