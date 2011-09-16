@@ -25,11 +25,19 @@ import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.sql.DataSource;
 
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.hibernate.annotations.GenericGenerator;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -42,6 +50,7 @@ import com.artivisi.biller.simulator.entity.Bank;
 import com.artivisi.biller.simulator.entity.Mitra;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
+import com.artivisi.biller.simulator.entity.TagihanNontaglis;
 import com.artivisi.biller.simulator.entity.TagihanPascabayar;
 import com.artivisi.biller.simulator.service.BillerSimulatorService;
 import com.artivisi.biller.simulator.service.PlnSimulatorService;
@@ -225,6 +234,14 @@ public class PpobSimulatorServiceImplTest {
 		assertTrue(plnService.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
 	}
 	
+	@Test
+	public void testSaveTagihanNontaglis(){
+		Pelanggan p = plnService.findPelangganById("def");
+		TagihanNontaglis t = createTagihanNontaglis(p);
+		plnService.save(t);
+		assertNotNull(t.getId());
+	}
+	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
 		PembayaranPascabayar p = new PembayaranPascabayar();
 		
@@ -269,6 +286,13 @@ public class PpobSimulatorServiceImplTest {
 		p.setServiceUnit("51");
 		p.setServiceUnitPhone("1234567890");
 		return p;
+	}
+	
+	private TagihanNontaglis createTagihanNontaglis(Pelanggan p){
+		TagihanNontaglis tag = new TagihanNontaglis();
+		tag.setPelanggan(p);
+		tag.setSwitcherId("xyz");
+		return tag;
 	}
 
 }
