@@ -248,11 +248,6 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 	@Override
 	public void delete(TagihanNontaglis tagihanNontaglis) {
 		if(tagihanNontaglis == null || !StringUtils.hasText(tagihanNontaglis.getId())) return;
-		
-		sessionFactory.getCurrentSession().createQuery("delete from TagihanNontaglis t where t.tagihanNontaglis.id = :tagihan")
-		.setString("tagihan", tagihanNontaglis.getId())
-		.executeUpdate();
-		
 		sessionFactory.getCurrentSession().delete(tagihanNontaglis);
 	}
 
