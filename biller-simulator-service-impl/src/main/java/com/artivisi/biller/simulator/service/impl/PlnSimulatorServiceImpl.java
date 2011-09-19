@@ -126,6 +126,15 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 		.setBoolean("lunas", lunas)
 		.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	private List<TagihanNontaglis> findTagihanNontaglis(Pelanggan pelanggan, Boolean lunas) {
+		return sessionFactory.getCurrentSession()
+		.createQuery("from TagihanPascabayar t where t.pelanggan.id = :pelanggan and t.lunas = :lunas order by t.billPeriod")
+		.setString("pelanggan", pelanggan.getId())
+		.setBoolean("lunas", lunas)
+		.list();
+	}
 
 	@Override
 	public void generatePascabayar(GeneratorTagihanPascabayar generator) {
@@ -238,11 +247,22 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 
 	@Override
 	public void delete(TagihanNontaglis tagihanNontaglis) {
+		if(tagihanNontaglis == null || !StringUtils.hasText(tagihanNontaglis.getId())) return;
+		
+		sessionFactory.getCurrentSession().createQuery("delete from TagihanNontaglis t where t.tagihanNontaglis.id = :tagihan")
+		.setString("tagihan", tagihanNontaglis.getId())
+		.executeUpdate();
+		
+		sessionFactory.getCurrentSession().delete(tagihanNontaglis);
 	}
 
 	@Override
-	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis) {
-		return null ;
+	public List<TagihanNontaglis> findTagihanNontaglis(Pelanggan pelanggan) {
+		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
+			return new ArrayList<TagihanNontaglis>();
+		}
+		
+		return findTagihanNontaglis(pelanggan, false);		
 	}
 
 	@Override

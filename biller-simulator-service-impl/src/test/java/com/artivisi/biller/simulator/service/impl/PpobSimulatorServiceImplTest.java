@@ -244,6 +244,17 @@ public class PpobSimulatorServiceImplTest {
 	}
 	
 	@Test
+	public void testDeleteTagihanNontaglis(){
+		Pelanggan p = plnService.findPelangganById("def");
+		List<TagihanNontaglis> hasil = plnService.findTagihanNontaglis(p);
+		
+		TagihanNontaglis t = hasil.get(0);
+		plnService.delete(t);
+		
+		assertTrue(plnService.findTagihan(p).size() == 1);
+	}
+	
+	@Test
 	public void testSaveTagihannontaglisDetail(){
 		TagihanNontaglisDetail t = new TagihanNontaglisDetail();
 		t.setTotalRepeat(new Integer(2));

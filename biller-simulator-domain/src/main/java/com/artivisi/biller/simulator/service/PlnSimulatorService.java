@@ -39,7 +39,7 @@ public interface PlnSimulatorService {
 	
 	public void save(TagihanNontaglis tagihanNontaglis);
 	public void delete(TagihanNontaglis tagihanNontaglis);
-	public List<TagihanNontaglis> findTagihanNontaglis(TagihanNontaglis tagihanNontaglis);
+	public List<TagihanNontaglis> findTagihanNontaglis(Pelanggan pelanggan);
 
 	public void save(TagihanNontaglisDetail tagihanNontaglisDetail);
 	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail);
