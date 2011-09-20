@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
+import com.artivisi.biller.simulator.entity.Bank;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
@@ -44,6 +45,7 @@ public interface PlnSimulatorService {
 	public void save(TagihanNontaglisDetail tagihanNontaglisDetail);
 	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail);
 	public List<TagihanNontaglis> findTagihanNontaglisDetail(TagihanNontaglisDetail tagihanNontaglisDetail);
+	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail();
 	
 	public void generatePascabayar(GeneratorTagihanPascabayar generator);
 	

@@ -235,7 +235,7 @@ public class PpobSimulatorServiceImplTest {
 		assertTrue(plnService.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
 	}
 	
-	@Test
+//	@Test
 	public void testSaveTagihanNontaglis(){
 		Pelanggan p = plnService.findPelangganById("def");
 		TagihanNontaglis t = createTagihanNontaglis(p);
@@ -243,7 +243,7 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(t.getId());
 	}
 	
-	@Test
+//	@Test
 	public void testDeleteTagihanNontaglis(){
 		Pelanggan p = plnService.findPelangganById("def");
 		List<TagihanNontaglis> hasil = plnService.findTagihanNontaglis(p);
@@ -263,6 +263,11 @@ public class PpobSimulatorServiceImplTest {
 		t.setCustomDetailValueAmount(new Integer(0));
 		plnService.save(t);
 		assertNotNull(t.getId());
+	}
+	
+	@Test
+	public void testFindAllTagihanNontaglisDetail(){
+		assertTrue(plnService.findAllTagihanNontaglisDetail().size()==1);
 	}
 	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){

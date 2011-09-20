@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
+import com.artivisi.biller.simulator.entity.Bank;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
@@ -277,5 +278,10 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 			TagihanNontaglisDetail tagihanNontaglisDetail) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail() {
+		return sessionFactory.getCurrentSession().createQuery("from Bank").list();
 	}
 }
