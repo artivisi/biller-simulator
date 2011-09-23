@@ -23,8 +23,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,15 +35,10 @@ public class TagihanNontaglis {
 	@Id @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id ;
-	
-	@ManyToOne
-	@JoinColumn(name="id_pelanggan", nullable=false)
-	private Pelanggan pelanggan;
-	
 	@Column(name="switcher_id", nullable=false)
 	private String switcherId ;
-	@Column(name="registration_number",nullable=false)
-	private BigDecimal registrationNumber ;
+	@Column(name="registration_number",nullable=false,unique=true)
+	private String registrationNumber ;
 	@Column(name="area_code", nullable=false)
 	private Integer areaCode ;
 	@Column(name="transaction_code",nullable=false)
@@ -99,22 +92,16 @@ public class TagihanNontaglis {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Pelanggan getPelanggan() {
-		return pelanggan;
-	}
-	public void setPelanggan(Pelanggan pelanggan) {
-		this.pelanggan = pelanggan;
-	}
 	public String getSwitcherId() {
 		return switcherId;
 	}
 	public void setSwitcherId(String switcherId) {
 		this.switcherId = switcherId;
 	}
-	public BigDecimal getRegistrationNumber() {
+	public String getRegistrationNumber() {
 		return registrationNumber;
 	}
-	public void setRegistrationNumber(BigDecimal registrationNumber) {
+	public void setRegistrationNumber(String registrationNumber) {
 		this.registrationNumber = registrationNumber;
 	}
 	public Integer getAreaCode() {
