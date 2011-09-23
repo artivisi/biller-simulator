@@ -252,14 +252,13 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 		sessionFactory.getCurrentSession().delete(tagihanNontaglis);
 	}
 
+	
 	@Override
-	public List<TagihanNontaglis> findTagihanNontaglis(Pelanggan pelanggan) {
-		if(pelanggan == null || !StringUtils.hasText(pelanggan.getId())) {
-			return new ArrayList<TagihanNontaglis>();
-		}
-		
-		return findTagihanNontaglis(pelanggan, false);		
+	public TagihanNontaglis findTagihanNontaglis(String regnum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
 	@Override
 	public void save(TagihanNontaglisDetail tagihanNontaglisDetail) {
@@ -274,14 +273,8 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 	}
 
 	@Override
-	public List<TagihanNontaglis> findTagihanNontaglisDetail(
-			TagihanNontaglisDetail tagihanNontaglisDetail) {
+	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail() {
-		return sessionFactory.getCurrentSession().createQuery("from Bank").list();
 	}
 }

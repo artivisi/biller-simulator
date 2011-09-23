@@ -235,7 +235,7 @@ public class PpobSimulatorServiceImplTest {
 		assertTrue(plnService.findPembayaranPascabayar(new DateTime(2011,01,01,0,0,0,0).toDate(), "ARTIVISI").size() == 0);
 	}
 	
-//	@Test
+	@Test
 	public void testSaveTagihanNontaglis(){
 		Pelanggan p = plnService.findPelangganById("def");
 		TagihanNontaglis t = createTagihanNontaglis(p);
@@ -243,16 +243,6 @@ public class PpobSimulatorServiceImplTest {
 		assertNotNull(t.getId());
 	}
 	
-//	@Test
-	public void testDeleteTagihanNontaglis(){
-		Pelanggan p = plnService.findPelangganById("def");
-		List<TagihanNontaglis> hasil = plnService.findTagihanNontaglis(p);
-		
-		TagihanNontaglis t = hasil.get(0);
-		plnService.delete(t);
-		
-		assertTrue(plnService.findTagihan(p).size() == 1);
-	}
 	
 	@Test
 	public void testSaveTagihannontaglisDetail(){
@@ -318,10 +308,9 @@ public class PpobSimulatorServiceImplTest {
 	
 	private TagihanNontaglis createTagihanNontaglis(Pelanggan p){
 		TagihanNontaglis t = new TagihanNontaglis();
-		t.setPelanggan(p);
 		t.setSwitcherId("xyz");
 		t.setSubscriberName("Fanani M. Ihsan");
-		t.setRegistrationNumber(new BigDecimal(987654567)) ;
+		t.setRegistrationNumber("987654567") ;
 		t.setAreaCode(new Integer(876545)) ;
 		t.setTransactionCode(new Integer(9567876)) ;
 		t.setTransactionName("transaction");

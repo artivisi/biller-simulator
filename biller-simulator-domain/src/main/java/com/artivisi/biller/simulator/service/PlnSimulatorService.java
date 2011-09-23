@@ -40,11 +40,10 @@ public interface PlnSimulatorService {
 	
 	public void save(TagihanNontaglis tagihanNontaglis);
 	public void delete(TagihanNontaglis tagihanNontaglis);
-	public List<TagihanNontaglis> findTagihanNontaglis(Pelanggan pelanggan);
+	public TagihanNontaglis findTagihanNontaglis(String regnum); 
 
 	public void save(TagihanNontaglisDetail tagihanNontaglisDetail);
 	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail);
-	public List<TagihanNontaglis> findTagihanNontaglisDetail(TagihanNontaglisDetail tagihanNontaglisDetail);
 	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail();
 	
 	public void generatePascabayar(GeneratorTagihanPascabayar generator);
