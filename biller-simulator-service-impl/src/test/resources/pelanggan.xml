@@ -138,7 +138,31 @@
     	merchant_category="6012"
     />
     
-    <tagihan_nontaglis 
+    <tagihan_nontaglis
+		id="abcdef"
+		admin_charge="90000"
+		charge_unit="1"
+		area_code="99"
+		receipt_number="98765456765"
+		expiration_date="2010-01-15"
+		mutation_number="99"
+		pln_bil_unit="950"
+		ref_number="9845456445"
+		power_consuming_category="950"
+		registration_date="2010-01-15"
+		registration_number="956788"
+		rptag="90000"
+		service_unit="0"
+		service_unit_address="Jakarta"
+		service_unit_phone="021-98767654"
+		subscriber_id="123456789"
+		subscriber_name="Rudi Hartono"
+		subscriber_segmentation="9"
+		switcher_id="xyz"	
+		total_amount="100000"
+		total_amount_unit="9"
+		transaction_code="7765"
+		transaction_name="PLN Jabar"
     />
     
 </dataset>
