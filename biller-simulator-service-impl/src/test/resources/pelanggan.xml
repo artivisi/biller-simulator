@@ -165,4 +165,12 @@
 		transaction_name="PLN Jabar"
     />
     
+    <tagihan_nontaglis_detail
+		id="wxyz"
+		detail_code="0"
+		detail_unit="0"
+		detail_value_amount="90000"
+		total_repeat="2"
+    />
+    
 </dataset>
