@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.artivisi.biller.simulator.dto.GeneratorTagihanPascabayar;
-import com.artivisi.biller.simulator.entity.Bank;
 import com.artivisi.biller.simulator.entity.Pelanggan;
 import com.artivisi.biller.simulator.entity.PembayaranPascabayar;
 import com.artivisi.biller.simulator.entity.TagihanNontaglis;
