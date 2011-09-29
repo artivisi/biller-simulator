@@ -244,6 +244,14 @@ public class PpobSimulatorServiceImplTest {
 	}
 	
 	@Test
+	public void testDeleteTagihanNontaglis(){
+		TagihanNontaglis t = new TagihanNontaglis();
+		assertNotNull(t);
+		plnService.delete(t);
+		assertNull(plnService.findTagihanNontaglis("abcdef"));
+	}
+		
+	@Test
 	public void testFindTagihanNontaglis(){
 		assertNull(plnService.findTagihanNontaglis(null));
 		assertNull(plnService.findTagihanNontaglis(""));
