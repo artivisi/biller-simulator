@@ -261,10 +261,10 @@ public class PpobSimulatorServiceImplTest {
 		assertNull(plnService.findTagihanNontaglis("956788"));
 	}
 	
-//	@Test
-//	public void testFindAllTagihanNontaglisDetail(){
-//		assertTrue(plnService.findAllTagihanNontaglisDetail().size()==1);
-//	}
+	@Test
+	public void testFindAllTagihanNontaglisDetail(){
+		assertTrue(plnService.findAllTagihanNontaglisDetail().size()==1);
+	}
 	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
 		PembayaranPascabayar p = new PembayaranPascabayar();

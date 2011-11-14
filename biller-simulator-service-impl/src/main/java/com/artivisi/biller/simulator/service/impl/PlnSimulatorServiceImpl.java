@@ -268,13 +268,12 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 
 	@Override
 	public void delete(TagihanNontaglisDetail tagihanNontaglisDetail) {
-		// TODO Auto-generated method stub
-		
+		if (tagihanNontaglisDetail == null || !StringUtils.hasText(tagihanNontaglisDetail.getId())) return;
+		sessionFactory.getCurrentSession().delete(tagihanNontaglisDetail);
 	}
 
 	@Override
 	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().createQuery("from TagihanNontaglisDetail").list();
 	}
 }
