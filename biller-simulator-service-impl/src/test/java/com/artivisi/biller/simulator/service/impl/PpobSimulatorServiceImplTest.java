@@ -25,19 +25,11 @@ import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.sql.DataSource;
 
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.hibernate.annotations.GenericGenerator;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -248,16 +240,8 @@ public class PpobSimulatorServiceImplTest {
 		TagihanNontaglis t = new TagihanNontaglis();
 		assertNotNull(t);
 		plnService.delete(t);
-		assertNull(plnService.findTagihanNontaglis("abcdef"));
-	}
-		
-	@Test
-	public void testFindTagihanNontaglis(){
-		assertNull(plnService.findTagihanNontaglis(null));
-		assertNull(plnService.findTagihanNontaglis(""));
 		assertNull(plnService.findTagihanNontaglis("956788"));
 	}
-	
 	
 	@Test
 	public void testSaveTagihannontaglisDetail(){
@@ -271,9 +255,16 @@ public class PpobSimulatorServiceImplTest {
 	}
 	
 	@Test
-	public void testFindAllTagihanNontaglisDetail(){
-		assertTrue(plnService.findAllTagihanNontaglisDetail().size()==1);
+	public void testFindTagihanNontaglis(){
+		assertNull(plnService.findTagihanNontaglis(null));
+		assertNull(plnService.findTagihanNontaglis(""));
+		assertNull(plnService.findTagihanNontaglis("956788"));
 	}
+	
+//	@Test
+//	public void testFindAllTagihanNontaglisDetail(){
+//		assertTrue(plnService.findAllTagihanNontaglisDetail().size()==1);
+//	}
 	
 	private PembayaranPascabayar createPembayaranPascabayar(TagihanPascabayar t){
 		PembayaranPascabayar p = new PembayaranPascabayar();

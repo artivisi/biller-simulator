@@ -256,9 +256,7 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 	@Override
 	public TagihanNontaglis findTagihanNontaglis(String regnum) {
 		if(!StringUtils.hasText(regnum)) return null ;
-		return (TagihanNontaglis) sessionFactory.getCurrentSession().createQuery("from TagihanNontaglis where registrationNumber = :regnum")
-		.setString("regnum", regnum.trim())
-		.uniqueResult();
+		return (TagihanNontaglis) sessionFactory.getCurrentSession().get(TagihanNontaglis.class, regnum);
 	}
 	
 
