@@ -367,4 +367,45 @@ public class PlnGateway implements ISORequestListener {
 		src.send(response);
 		return true;
 	}
+	
+	private boolean handleInquiryNontaglis(ISOSource src , ISOMsg msg, ISOMsg response) throws ISOException, IOException{
+		String bit48Request = msg.getString(48);
+		if(bit48Request.length() != 20){
+			logger.error("[POSTPAID] - [INQ-REQ] - Invalid bit 48 [{}]", bit48Request);
+			response.set(38 , ResponseCode.ERROR_INVALID_MESSAGE);
+			src.send(response);
+			return true ;
+		}
+		
+		String mitra = bit48Request.substring(0,7);
+		if (billerSimulatorService.findMitraByKode(mitra.trim()) == null){
+			logger.debug("[POSTPAID] - [INQ-REQ] - Mitra [{}]", mitra);
+			logger.error("[POSTPAID] - [INQ-REQ] - Kode mitra tidak ditemukan [{}]", mitra);
+			response.set(39, ResponseCode.ERROR_UNREGISTERED_SWITCHING);
+			src.send(response);
+			return true;
+		}
+		
+		String idpel = bit48Request.substring(7,39);
+		Pelanggan p = plnSimulatorService.findPelangganByIdpel(idpel);
+		if(p == null) {
+			logger.error("[POSTPAID] - [INQ-REQ] - IDPEL tidak ditemukan [{}]", idpel);
+			response.set(39, ResponseCode.ERROR_UNKNOWN_SUBSCRIBER);
+			src.send(response);
+			return true;
+		}
+		
+		if(!ResponseCode.SUCCESSFUL.equals(p.getResponseCode())) {
+			logger.error("[PREPAID] - [INQ-REQ] - Pelanggan diset untuk RC [{}]", p.getResponseCode());
+			response.set(39, p.getResponseCode());
+			src.send(response);
+			return true;
+		}
+			
+		return true;
+	}
+	
+	private boolean handlePaymentNontaglis(String regnum, BigDecimal amount) throws ISOException{
+		return true;
+	}
 }
