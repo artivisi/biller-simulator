@@ -28,3 +28,7 @@ private
 
 # Jasper Report
 *.bak
+
+# IntelliJ IDEA
+.idea
+*.iml
