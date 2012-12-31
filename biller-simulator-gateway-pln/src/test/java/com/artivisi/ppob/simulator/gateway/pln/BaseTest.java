@@ -20,8 +20,10 @@ import java.sql.Connection;
 
 import javax.sql.DataSource;
 
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.jpos.util.Log4JListener;
 import org.junit.AfterClass;
@@ -58,7 +60,9 @@ public abstract class BaseTest {
 	@Before
 	public void resetDatabase() throws Exception {
 		Connection conn = dataSource.getConnection();
-		DatabaseOperation.CLEAN_INSERT.execute(new DatabaseConnection(conn), 
+        DatabaseConnection dbUnitConn = new DatabaseConnection(conn);
+        dbUnitConn.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
+        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConn,
 				new FlatXmlDataSetBuilder().build(new File("src/test/resources/pelanggan.xml")));
 	}
 	
