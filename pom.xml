@@ -127,6 +127,7 @@
                             <exclude>**/.metadata/**</exclude>
                             <exclude>**/Servers/**</exclude>
                             <exclude>**/libraries/**</exclude>
+                            <exclude>**/.idea/**</exclude>
                         </excludes>
                     </configuration>
                     <executions>
