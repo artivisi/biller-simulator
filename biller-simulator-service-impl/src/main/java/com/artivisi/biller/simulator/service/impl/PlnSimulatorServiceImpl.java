@@ -276,7 +276,10 @@ public class PlnSimulatorServiceImpl implements PlnSimulatorService {
 
 	@Override
 	public List<TagihanNontaglisDetail> findAllTagihanNontaglisDetail() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory
+                .getCurrentSession()
+                .createQuery("from TagihanNontaglisDetail")
+                .list();
+
 	}
 }

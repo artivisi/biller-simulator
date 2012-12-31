@@ -255,7 +255,7 @@ public class PpobSimulatorServiceImplTest {
 	public void testFindTagihanNontaglis(){
 		assertNull(plnService.findTagihanNontaglis(null));
 		assertNull(plnService.findTagihanNontaglis(""));
-		assertNull(plnService.findTagihanNontaglis("956788"));
+		assertNotNull(plnService.findTagihanNontaglis("956788"));
 	}
 	
 	
