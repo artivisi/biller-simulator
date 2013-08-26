@@ -39,7 +39,7 @@ Berikut sintaks SQL untuk membuat username, password, dan database di MySQL. Per
 
 ```sql
 create database ppob_simulator;
-grant all on ppob_simulator.* to simulator identified by 'simulator';
+grant all on ppob_simulator.* to simulator@localhost identified by 'simulator';
 ```
 
 Cara menjalankan aplikasi web
